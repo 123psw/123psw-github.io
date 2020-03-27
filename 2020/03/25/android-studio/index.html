@@ -447,10 +447,10 @@
 
 if(true){
 	var gitalk = new Gitalk({
-  	clientID: 'de6b62c8acbbdf16d3a1',
-  	clientSecret: 'b8a2d7a10374ef6ddc1f157bbecf1f65c70d1637',
-  	repo: '123psw.github.io',
-  	owner: '123psw',
+  	clientID: 'd692562767039bdc6f5303385d6ef0b2abbdae1f7c769734ad2b9ff87fd56d3b#创建的Application ClientID',
+  	clientSecret: '6b9352b156873dad870bcee9606391471d3d1b561bdb1959d7ed346674d53f17',
+  	repo: 'pan_su_wan',
+  	owner: '',
   	admin: ['123psw'],
   	id: 'Wed Mar 25 2020 18:42:50 GMT+0800',
   	distractionFreeMode: 'true'
@@ -460,6 +460,23 @@ gitalk.render('gitalk-container')
 </script>
     
 
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  //id: "http://yoursite.com/2020/03/25/android-studio/",
+  id: 'Wed Mar 25 2020 18:42:50 GMT+0800',
+  owner: '123psw',
+  repo: '123psw.github.io',
+  oauth: {
+    client_id: 'de6b62c8acbbdf16d3a1',
+    client_secret: 'b8a2d7a10374ef6ddc1f157bbecf1f65c70d1637',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
