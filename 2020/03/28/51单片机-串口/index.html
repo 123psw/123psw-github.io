@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>51单片机串口仿真 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="串口1.串口的发送与接收简单理解一下，51单片机的串口，是个全双工的串口，发送数据的同时，还可以接收数据。   串口有以下几个寄存器串行端口缓冲寄存器（SBUF）： 地址是99H。有两个缓冲器，一个是只写发送寄存器，一个是只读接收寄存器。串行端口控制寄存器（SCON）：地址是98H，可以位寻址。如表1-1所示：   表1-1 SCON简表    位 符号 地址 模式    SCON.7 SM0 9">
+  <meta name="description" content="串口">
 <meta property="og:type" content="article">
 <meta property="og:title" content="51单片机串口仿真">
 <meta property="og:url" content="http://yoursite.com/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="串口1.串口的发送与接收简单理解一下，51单片机的串口，是个全双工的串口，发送数据的同时，还可以接收数据。   串口有以下几个寄存器串行端口缓冲寄存器（SBUF）： 地址是99H。有两个缓冲器，一个是只写发送寄存器，一个是只读接收寄存器。串行端口控制寄存器（SCON）：地址是98H，可以位寻址。如表1-1所示：   表1-1 SCON简表    位 符号 地址 模式    SCON.7 SM0 9">
+<meta property="og:description" content="串口">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328192353.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328195120.png">
@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328195706.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/1585398327274.gif">
 <meta property="article:published_time" content="2020-03-28T09:29:03.000Z">
-<meta property="article:modified_time" content="2020-03-28T12:26:53.810Z">
+<meta property="article:modified_time" content="2020-03-28T12:31:51.977Z">
 <meta property="article:author" content="Suwan Pan">
 <meta property="article:tag" content="51单片机">
 <meta name="twitter:card" content="summary">
@@ -214,7 +214,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="串口"><a href="#串口" class="headerlink" title="串口"></a>串口</h2><h3 id="1-串口的发送与接收"><a href="#1-串口的发送与接收" class="headerlink" title="1.串口的发送与接收"></a>1.串口的发送与接收</h3><p>简单理解一下，51单片机的串口，是个全双工的串口，发送数据的同时，还可以接收数据。  </p>
+        <h2 id="串口"><a href="#串口" class="headerlink" title="串口"></a>串口</h2><a id="more"></a>
+<h3 id="1-串口的发送与接收"><a href="#1-串口的发送与接收" class="headerlink" title="1.串口的发送与接收"></a>1.串口的发送与接收</h3><p>简单理解一下，51单片机的串口，是个全双工的串口，发送数据的同时，还可以接收数据。  </p>
 <h4 id="串口有以下几个寄存器"><a href="#串口有以下几个寄存器" class="headerlink" title="串口有以下几个寄存器"></a>串口有以下几个寄存器</h4><p>串行端口缓冲寄存器（SBUF）： 地址是99H。有两个缓冲器，一个是只写发送寄存器，一个是只读接收寄存器。<br>串行端口控制寄存器（SCON）：地址是98H，可以位寻址。如表1-1所示：  </p>
 <pre><code>表1-1 SCON简表 </code></pre><table>
 <thead>
