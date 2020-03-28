@@ -269,6 +269,213 @@
 
 
   
+    <article id="post-51单片机-串口" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/">51单片机串口仿真</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/" class="archive-article-date">
+  	<time datetime="2020-03-28T09:29:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="串口"><a href="#串口" class="headerlink" title="串口"></a>串口</h2><h3 id="1-串口的发送与接收"><a href="#1-串口的发送与接收" class="headerlink" title="1.串口的发送与接收"></a>1.串口的发送与接收</h3><p>简单理解一下，51单片机的串口，是个全双工的串口，发送数据的同时，还可以接收数据。  </p>
+<h4 id="串口有以下几个寄存器"><a href="#串口有以下几个寄存器" class="headerlink" title="串口有以下几个寄存器"></a>串口有以下几个寄存器</h4><p>串行端口缓冲寄存器（SBUF）： 地址是99H。有两个缓冲器，一个是只写发送寄存器，一个是只读接收寄存器。<br>串行端口控制寄存器（SCON）：地址是98H，可以位寻址。如表1-1所示：  </p>
+<pre><code>表1-1 SCON简表 </code></pre><table>
+<thead>
+<tr>
+<th>位</th>
+<th>符号</th>
+<th>地址</th>
+<th>模式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SCON.7</td>
+<td>SM0</td>
+<td>9FH</td>
+<td>串行端口模式位0</td>
+</tr>
+<tr>
+<td>SCON.6</td>
+<td>SM1</td>
+<td>9EH</td>
+<td>串行端口模式位1</td>
+</tr>
+<tr>
+<td>SCON.5</td>
+<td>SM2</td>
+<td>9DH</td>
+<td>串行端口模式位2</td>
+</tr>
+<tr>
+<td>SCON.4</td>
+<td>REN</td>
+<td>9CH</td>
+<td>置1为允许接收</td>
+</tr>
+<tr>
+<td>SCON.3</td>
+<td>TB8</td>
+<td>9BH</td>
+<td>发送数据的位8</td>
+</tr>
+<tr>
+<td>SCON.2</td>
+<td>RB0</td>
+<td>9AH</td>
+<td>接收数据的位8</td>
+</tr>
+<tr>
+<td>SCON.1</td>
+<td>TI</td>
+<td>99H</td>
+<td>发送中断标志，字符数据发送完毕时硬件置位，由软件清零</td>
+</tr>
+<tr>
+<td>SCON.0</td>
+<td>RI</td>
+<td>98H</td>
+<td>接收中断标志，字符数据发送完毕时硬件置位，由软件清零</td>
+</tr>
+<tr>
+<td>表1-2为串行端口的工作模式</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<pre><code>表1-2 串行端口工作模式  </code></pre><table>
+<thead>
+<tr>
+<th>SM0</th>
+<th>SM1</th>
+<th>模式</th>
+<th>描述</th>
+<th>波特率</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>移位寄存器</td>
+<td>固定</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>8位UART</td>
+<td>可变（由定时器T1控制）</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>9位UART</td>
+<td>固定</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>9位UART</td>
+<td>可变</td>
+</tr>
+<tr>
+<td>这里我用的是模式1实现串口通信。</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>## keilC51 工程</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>这里，我以接收字符’A’,’B’控制发送字符，使用串口中断试下字符接收与发送。代码如下：</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;reg51.h&gt;</span></span><br><span class="line"></span><br><span class="line">unsigned char receiveDate; </span><br><span class="line"></span><br><span class="line">void UART_Init()</span><br><span class="line">&#123;</span><br><span class="line">  SCON = 0x50;    </span><br><span class="line">  TMOD = 0x20;  </span><br><span class="line">  PCON=PCON&amp;0x7f;</span><br><span class="line">  TH1 = -3;    </span><br><span class="line">  TL1 = -3;</span><br><span class="line">  TR1 = 1;                        </span><br><span class="line">  ES  = 1;     //串口中断允许位  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void put1(char c)</span><br><span class="line">&#123;</span><br><span class="line">	SBUF = c;</span><br><span class="line">	<span class="keyword">while</span>(!TI);</span><br><span class="line">	TI = 0; </span><br><span class="line">&#125;</span><br><span class="line">void ISR_Init()</span><br><span class="line">&#123;</span><br><span class="line">	EA = 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void putall(char *s)  //指针所指向的地址的值</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">while</span>(*s) </span><br><span class="line">	&#123; </span><br><span class="line">		put1(*s); //字符发送函数</span><br><span class="line">		s++;  //地址指向下一个</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void uart_0() interrupt 4</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(RI)</span><br><span class="line">	&#123;</span><br><span class="line">		receiveDate = SBUF;  //接收字符</span><br><span class="line">		RI = 0;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">  UART_Init(); //串口初始化</span><br><span class="line">  ISR_Init();  //总中断初始化</span><br><span class="line">	<span class="keyword">while</span>(1)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(receiveDate == <span class="string">'A'</span>)  //接收字符为<span class="string">'A'</span>,发送字符串“abcdef  \n”</span><br><span class="line">		  putall(<span class="string">"abcdef  \n"</span>);	</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(receiveDate == <span class="string">'B'</span>)//接收字符为<span class="string">'B'</span>,发送字符串“psw\n”</span><br><span class="line">			putall(<span class="string">"psw\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们使用虚拟串口驱动，实现端口的映射，如图2-1所示，点击添加端口，实现COM3-&gt;COM4映射（图左侧已实现）<br><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328192353.png" alt="虚拟串口驱动">   </p>
+<pre><code>图2-1 虚拟串口驱动    </code></pre><p>如图2-2，所示：在kileC51中右击Target-&gt; Options for Target ‘Target 1’-&gt;Debug,将 Use Simulator，Limit Speed to Real-Time 选中（作用是选择Options for Target ‘Target 1’中Target里Xtal的晶振）。<br><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328195120.png" alt="Debug"><br><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328195132.png" alt="Target">   </p>
+<pre><code>图2-2</code></pre><p>如图2-3所示，点击 Start/Stop Debug Session,在keilC51左下角输入MODE COM3 9600,0,8,1 以及ASSIGN COM3 <SIN> SOUT 指令,成功后虚拟串口驱动左侧COM3会出现[9600-N-8-1]<br><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328195706.png" alt="指令">    </SIN></p>
+<pre><code>图2-3 </code></pre><p>在串口助手这里选择COM4端口。这样就实现了串口软件虚拟仿真。<br><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/1585398327274.gif" alt="视频">    </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">51单片机</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+  
     <article id="post-android-studio" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -514,11 +721,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ANDROID-STUDIO</a>
+                <a href="javascript:void(0)" class="js-tag color1">51单片机</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ANDROID-STUDIO</a>
               </li>
             
             <div class="clearfix"></div>
