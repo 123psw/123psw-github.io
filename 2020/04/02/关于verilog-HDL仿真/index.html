@@ -6,15 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>关于verilog-HDL仿真 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="title: 关于verilog HDL仿真date: 2020-04-02 17:53:10tags: 随笔  关于modelsim仿真">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于verilog-HDL仿真">
+<meta property="og:url" content="http://yoursite.com/2020/04/02/%E5%85%B3%E4%BA%8Everilog-HDL%E4%BB%BF%E7%9C%9F/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="title: 关于verilog HDL仿真date: 2020-04-02 17:53:10tags: 随笔  关于modelsim仿真">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/04/02/%E5%85%B3%E4%BA%8Everilog-HDL%E4%BB%BF%E7%9C%9F/20200402194936.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/02/%E5%85%B3%E4%BA%8Everilog-HDL%E4%BB%BF%E7%9C%9F/20200402194906.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/02/%E5%85%B3%E4%BA%8Everilog-HDL%E4%BB%BF%E7%9C%9F/20200402202523.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/02/%E5%85%B3%E4%BA%8Everilog-HDL%E4%BB%BF%E7%9C%9F/20200402205728.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/02/%E5%85%B3%E4%BA%8Everilog-HDL%E4%BB%BF%E7%9C%9F/20200402210711.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/02/%E5%85%B3%E4%BA%8Everilog-HDL%E4%BB%BF%E7%9C%9F/20200402193941.png">
+<meta property="article:published_time" content="2020-04-02T09:53:10.971Z">
+<meta property="article:modified_time" content="2020-04-02T13:12:34.670Z">
 <meta property="article:author" content="Suwan Pan">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/04/02/%E5%85%B3%E4%BA%8Everilog-HDL%E4%BB%BF%E7%9C%9F/20200402194936.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -183,189 +194,277 @@
           </div>
           <div id="js-content" class="content-ll">
             
+<article id="post-关于verilog-HDL仿真" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      关于verilog-HDL仿真
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/02/%E5%85%B3%E4%BA%8Everilog-HDL%E4%BB%BF%E7%9C%9F/" class="archive-article-date">
+
+        
+        <a href="/2020/04/02/%E5%85%B3%E4%BA%8Everilog-HDL%E4%BB%BF%E7%9C%9F/" class="archive-article-date">
   	<time datetime="2020-04-02T09:53:10.971Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-02</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/02/%E5%85%B3%E4%BA%8Everilog-HDL%E4%BB%BF%E7%9C%9F/">关于verilog-HDL仿真</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>title: 关于verilog HDL仿真<br>date: 2020-04-02 17:53:10<br>tags: 随笔</p>
+<hr>
+<h2 id="关于modelsim仿真"><a href="#关于modelsim仿真" class="headerlink" title="关于modelsim仿真"></a>关于modelsim仿真</h2><a id="more"></a>  
+<p>  modelsim是单内核支持VHDL和Verilog HDL混合仿真的仿真器，是做FPGA/ASIC设计的RTL级和门级电路仿真的好选择。modelsim仿真<br>  本身就是编写testbench的过程。通过Testbench模块向待测模块输出信号作为激励，同时接收从待测模块输出的信号来查看结果。本文<br>  介绍如何实现Verilog HDL仿真。 </p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li><p>打开modelsim软件，选择File-&gt;new-&gt;Library…,出现如图1-1所示的界面创建库,<br>选择 a new library and a logical mapping to it , 在Library Name 下写work，点击ok。<br><img src="/2020/04/02/%E5%85%B3%E4%BA%8Everilog-HDL%E4%BB%BF%E7%9C%9F/20200402194936.png" alt="库"><br>图 1-1 创建库 </p>
+</li>
+<li><p>接下来选择 File-&gt;new-&gt;Project… , 出现如图1-2所示的界面创建工程环境。<br>依次为工程文件名，文件存放位置，所在的库。<br><img src="/2020/04/02/%E5%85%B3%E4%BA%8Everilog-HDL%E4%BB%BF%E7%9C%9F/20200402194906.png" alt="工程文件"><br>图1-2 创建工程</p>
+<ol start="3">
+<li><p>在空白处右击，选择Add To Project-&gt;Existing File… ,出现如图1-3所示的界面，<br>点击Browse…，选择所仿真的文件,这里我选择的文件c.v代码在下面。<br><img src="/2020/04/02/%E5%85%B3%E4%BA%8Everilog-HDL%E4%BB%BF%E7%9C%9F/20200402202523.png" alt="添加文件"><br>图1-3  添加文件   </p>
+</li>
+<li><p>点击new file ，在软件右侧出现文本框，输入以下代码进行保存，文件名与module后的名字一样如下面代码tb2.v。  </p>
+<p>   <code>timescale 1ns/1ns</code>include”./c.v”<br>   module tb2;</p>
+<pre><code>reg clk;
+wire L1,L2;
+initial 
+ begin
+  clk=0;
+ end</code></pre><p>   always #10 clk=<del>clk;<br>   c i1(.clk(clk),.L1(L1),.L2(L2));<br>  endmodule<br>`timescale 1ns/1ns 是用来时间轴设置的，这里表示仿真的时间轴单位是1ns，仿真工具仿真的最大精度只到1ns内的逻辑变化。<br>待测模块中的reg型信号在Testbench中就变成了wire，待测模块中的wire型信号在Testbench中则对应为reg型。<br>initial 表示初始化。<br>always #10 clk=</del>clk;是用来时钟产生的，这里表示每10ns（与时间轴设置有关），clk来一次高低电平转换。<br>c i1(.clk(clk),.L1(L1),.L2(L2));c是我们想要仿真的模块，il是我们创建的对象名，类似于java中的类与对象关系。  </p>
+</li>
+<li><p>完成保存后，按照3的步骤将tb2.v添加进来。然后鼠标右击，选择Compile-&gt;Compile All,界面出现如图1-4 所示，<br>如果左下角出现红色字体，说明模块编译错误。<br><img src="/2020/04/02/%E5%85%B3%E4%BA%8Everilog-HDL%E4%BB%BF%E7%9C%9F/20200402205728.png" alt="编译"><br>图1-4  编译  </p>
+</li>
+<li><p>点击左下角Library，选择work-&gt;tb2,右击Simulate,如果work为空，重启该软件。完成后，选择左侧的il，右击选择Add All。出现图1-5所示的界面。<br><img src="/2020/04/02/%E5%85%B3%E4%BA%8Everilog-HDL%E4%BB%BF%E7%9C%9F/20200402210711.png" alt="运行"><br>图 1-5 仿真界面  </p>
+</li>
+<li><p>最后选择Simulate-&gt;Run-&gt;Run-All,然后点击Wave -default下的变量，出现下图1-6运行的仿真。<br><img src="/2020/04/02/%E5%85%B3%E4%BA%8Everilog-HDL%E4%BB%BF%E7%9C%9F/20200402193941.png" alt="运行"><br>图1-6 仿真运行</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="代码-c-v"><a href="#代码-c-v" class="headerlink" title="代码 c.v"></a>代码 c.v</h2><pre><code>module c(L1,L2,clk);
+ output L1,L2;
+ input clk;
+ reg L1,L2;
+ reg[1:0] counter1;
+ reg[3:0] counter2;
+ initial 
+  begin 
+   L1=1&apos;b1;
+   L2=1&apos;b1;
+   counter1=0;
+   counter2=0;
+  end 
+ always@(posedge clk)
+  begin
+   counter1=counter1+1;
+   if(counter1==2&apos;d3)
+    begin
+     L1=~L1;
+     counter1=0;
+    end
+  end
+ always@(posedge clk)
+  begin
+   counter2=counter2+1;
+   if(counter2==4&apos;d12)
+    begin
+     L2=~L2;
+     counter2=0;
+    end
+  end
+endmodule </code></pre>
+      
 
-        <div class="article-info info-on-right">
-          
-          
-
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="assets/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://pan_su_wan.gitee.io/2020/04/02/%E5%85%B3%E4%BA%8Everilog-HDL%E4%BB%BF%E7%9C%9F/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/" class="archive-article-date">
-  	<time datetime="2020-03-28T09:29:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-28</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">51单片机串口仿真</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/">51单片机串口仿真</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">51单片机</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于modelsim仿真"><span class="toc-number">1.</span> <span class="toc-text">关于modelsim仿真</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤"><span class="toc-number">2.</span> <span class="toc-text">步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码-c-v"><span class="toc-number">3.</span> <span class="toc-text">代码 c.v</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
+  
+  
+
+  
+
+  
+  
+  
+    <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: 'd692562767039bdc6f5303385d6ef0b2abbdae1f7c769734ad2b9ff87fd56d3b#创建的Application ClientID',
+  	clientSecret: '6b9352b156873dad870bcee9606391471d3d1b561bdb1959d7ed346674d53f17',
+  	repo: 'pan_su_wan',
+  	owner: '',
+  	admin: ['psw'],
+  	id: 'Thu Apr 02 2020 17:53:10 GMT+0800',
+  	distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container') 
+}
+</script>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/27/android-studio/" class="archive-article-date">
-  	<time datetime="2020-03-27T10:42:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-27</time>
-</a>
-        </div>
-    	 
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/27/android-studio/">android studio/app的工程结构</a>
-    </h1>
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  //id: "http://yoursite.com/2020/04/02/%E5%85%B3%E4%BA%8Everilog-HDL%E4%BB%BF%E7%9C%9F/",
+  id: 'Thu Apr 02 2020 17:53:10 GMT+0800',
+  owner: '123psw',
+  repo: '123psw.github.io',
+  oauth: {
+    client_id: 'de6b62c8acbbdf16d3a1',
+    client_secret: 'b8a2d7a10374ef6ddc1f157bbecf1f65c70d1637',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ANDROID-STUDIO</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/26/hello-world/" class="archive-article-date">
-  	<time datetime="2020-03-26T09:17:09.940Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/26/hello-world/">Hello World</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/24/myfirst/" class="archive-article-date">
-  	<time datetime="2020-03-24T01:53:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/24/myfirst/">myfirst</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -391,8 +490,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
