@@ -1,10 +1,32 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="zh-CN">
+
+<!-- 雪花特效 -->
+
+    <script type="text/javascript">
+        var windowWidth = $(window).width();
+        if (windowWidth > 768) {
+            if(new Date().getHours()%2==0){
+            document.write('<script type="text/javascript" src="/js/xuehuapiaoluo.js"><\/script>');
+            }
+        }
+    </script>
+
+
+ 
+     <script type="text/javascript"> 
+     //只在桌面版网页启用特效 
+     var windowWidth = $(window).width(); 
+     if (windowWidth > 768) { 
+         document.write('<script type="text/javascript" src="/js/sakura.js"></script>'); 
+     } 
+    </script> 
+ 
 
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="51单片机串口仿真, Hexo">
+    <meta name="keywords" content="51单片机发送与接收, 平湖烟雨">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +38,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>51单片机串口仿真 | Hexo</title>
+    <title>51单片机发送与接收 | 平湖烟雨</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -29,7 +51,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -41,7 +63,7 @@
                     
                     <img src="/medias/logo.png" class="logo-img" alt="LOGO">
                     
-                    <span class="logo-span">Hexo</span>
+                    <span class="logo-span">平湖烟雨</span>
                 </a>
             </div>
             
@@ -55,7 +77,7 @@
       
       <i class="fas fa-home" style="zoom: 0.6;"></i>
       
-      <span>Index</span>
+      <span>首页</span>
     </a>
     
   </li>
@@ -66,7 +88,7 @@
       
       <i class="fas fa-tags" style="zoom: 0.6;"></i>
       
-      <span>Tags</span>
+      <span>标签</span>
     </a>
     
   </li>
@@ -77,7 +99,7 @@
       
       <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
       
-      <span>Categories</span>
+      <span>分类</span>
     </a>
     
   </li>
@@ -88,7 +110,7 @@
       
       <i class="fas fa-archive" style="zoom: 0.6;"></i>
       
-      <span>Archives</span>
+      <span>归档</span>
     </a>
     
   </li>
@@ -99,7 +121,7 @@
       
       <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
       
-      <span>About</span>
+      <span>关于</span>
     </a>
     
   </li>
@@ -110,7 +132,7 @@
       
       <i class="fas fa-comments" style="zoom: 0.6;"></i>
       
-      <span>Contact</span>
+      <span>留言板</span>
     </a>
     
   </li>
@@ -121,14 +143,14 @@
       
       <i class="fas fa-address-book" style="zoom: 0.6;"></i>
       
-      <span>Friends</span>
+      <span>友情链接</span>
     </a>
     
   </li>
   
   <li>
     <a href="#searchModal" class="modal-trigger waves-effect waves-light">
-      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
     </a>
   </li>
 </ul>
@@ -139,7 +161,7 @@
         
         <img src="/medias/logo.png" class="logo-img circle responsive-img">
         
-        <div class="logo-name">Hexo</div>
+        <div class="logo-name">平湖烟雨</div>
         <div class="logo-desc">
             
             Never really desperate, only the lost of the soul.
@@ -157,7 +179,7 @@
 			
 			    <i class="fa-fw fas fa-home"></i>
 			
-			Index
+			首页
 		</a>
           
         </li>
@@ -168,7 +190,7 @@
 			
 			    <i class="fa-fw fas fa-tags"></i>
 			
-			Tags
+			标签
 		</a>
           
         </li>
@@ -179,7 +201,7 @@
 			
 			    <i class="fa-fw fas fa-bookmark"></i>
 			
-			Categories
+			分类
 		</a>
           
         </li>
@@ -190,7 +212,7 @@
 			
 			    <i class="fa-fw fas fa-archive"></i>
 			
-			Archives
+			归档
 		</a>
           
         </li>
@@ -201,7 +223,7 @@
 			
 			    <i class="fa-fw fas fa-user-circle"></i>
 			
-			About
+			关于
 		</a>
           
         </li>
@@ -212,7 +234,7 @@
 			
 			    <i class="fa-fw fas fa-comments"></i>
 			
-			Contact
+			留言板
 		</a>
           
         </li>
@@ -223,7 +245,7 @@
 			
 			    <i class="fa-fw fas fa-address-book"></i>
 			
-			Friends
+			友情链接
 		</a>
           
         </li>
@@ -306,12 +328,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">51单片机串口仿真</h1>
+                    <h1 class="description center-align post-title">51单片机发送与接收</h1>
                 </div>
             </div>
         </div>
@@ -451,13 +473,18 @@
             <div class="post-info">
                 
                 <div class="post-date info-break-policy">
-                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
                     2020-03-28
                 </div>
                 
 
                 
 
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    682
+                </div>
                 
 
                 
@@ -470,73 +497,16 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="串口"><a href="#串口" class="headerlink" title="串口"></a>串口</h2><a id="more"></a>
-<h3 id="1-串口的发送与接收"><a href="#1-串口的发送与接收" class="headerlink" title="1.串口的发送与接收"></a>1.串口的发送与接收</h3><p>简单理解一下，51单片机的串口，是个全双工的串口，发送数据的同时，还可以接收数据。  </p>
-<h4 id="串口有以下几个寄存器"><a href="#串口有以下几个寄存器" class="headerlink" title="串口有以下几个寄存器"></a>串口有以下几个寄存器</h4><p>串行端口缓冲寄存器（SBUF）： 地址是99H。有两个缓冲器，一个是只写发送寄存器，一个是只读接收寄存器。<br>串行端口控制寄存器（SCON）：地址是98H，可以位寻址。如表1-1所示：  </p>
-<pre><code>表1-1 SCON简表 </code></pre><table>
-<thead>
-<tr>
-<th>位</th>
-<th>符号</th>
-<th>地址</th>
-<th>模式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>SCON.7</td>
-<td>SM0</td>
-<td>9FH</td>
-<td>串行端口模式位0</td>
-</tr>
-<tr>
-<td>SCON.6</td>
-<td>SM1</td>
-<td>9EH</td>
-<td>串行端口模式位1</td>
-</tr>
-<tr>
-<td>SCON.5</td>
-<td>SM2</td>
-<td>9DH</td>
-<td>串行端口模式位2</td>
-</tr>
-<tr>
-<td>SCON.4</td>
-<td>REN</td>
-<td>9CH</td>
-<td>置1为允许接收</td>
-</tr>
-<tr>
-<td>SCON.3</td>
-<td>TB8</td>
-<td>9BH</td>
-<td>发送数据的位8</td>
-</tr>
-<tr>
-<td>SCON.2</td>
-<td>RB0</td>
-<td>9AH</td>
-<td>接收数据的位8</td>
-</tr>
-<tr>
-<td>SCON.1</td>
-<td>TI</td>
-<td>99H</td>
-<td>发送中断标志，字符数据发送完毕时硬件置位，由软件清零</td>
-</tr>
-<tr>
-<td>SCON.0</td>
-<td>RI</td>
-<td>98H</td>
-<td>接收中断标志，字符数据发送完毕时硬件置位，由软件清零</td>
-</tr>
-<tr>
-<td>表1-2为串行端口的工作模式</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<pre><code>表1-2 串行端口工作模式  </code></pre><table>
+<h3 id="串口的发送与接收"><a href="#串口的发送与接收" class="headerlink" title="串口的发送与接收"></a>串口的发送与接收</h3><p>简单理解一下，51单片机的串口，是个全双工的串口，发送数据的同时，还可以接收数据。  </p>
+<h4 id="串口有以下几个寄存器"><a href="#串口有以下几个寄存器" class="headerlink" title="串口有以下几个寄存器"></a>串口有以下几个寄存器</h4><ol>
+<li><p>串行端口缓冲寄存器（SBUF）： 地址是99H。有两个缓冲器，一个是只写发送寄存器，一个是只读接收寄存器。  </p>
+</li>
+<li><p>串行端口控制寄存器（SCON）：地址是98H，可以位寻址。如表1-1所示：  </p>
+<p>  表1-1 SCON简表<br>位  |  符号  |  地址  |  模式  </p>
+</li>
+</ol>
+<p>——  | ——  | —— | ——<br>SCON.7  |  SM0  |  9FH  | 串行端口模式位0<br>SCON.6  |  SM1  |  9EH  | 串行端口模式位1<br>SCON.5  |  SM2  |  9DH  | 串行端口模式位2<br>SCON.4  |  REN  |  9CH  | 置1为允许接收<br>SCON.3  |  TB8  |  9BH  | 发送数据的位8<br>SCON.2  |  RB0  |  9AH  | 接收数据的位8<br>SCON.1  |  TI  |  99H  | 发送中断标志，字符数据发送完毕时硬件置位，由软件清零<br>SCON.0  |  RI  |  98H  | 接收中断标志，字符数据发送完毕时硬件置位，由软件清零   </p>
+<pre><code> 表1-2 串行端口工作模式  </code></pre><table>
 <thead>
 <tr>
 <th>SM0</th>
@@ -589,18 +559,436 @@
 <td></td>
 </tr>
 <tr>
-<td>这里，我以接收字符’A’,’B’控制发送字符，使用串口中断试下字符接收与发送。代码如下：</td>
+<td>1. 这里，我以接收字符’A’,’B’控制发送字符，使用串口中断试下字符接收与发送。代码如下：</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>``` bash</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>#include &lt;reg51.h&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>unsigned char receiveDate;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>void UART_Init()</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SCON = 0x50;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TMOD = 0x20;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PCON=PCON&0x7f;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TH1 = -3;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TL1 = -3;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TR1 = 1;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ES  = 1;     //串口中断允许位</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>}</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>void put1(char c)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SBUF = c;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>while(!TI);</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TI = 0;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>}</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>void ISR_Init()</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>EA = 1;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>}</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>void putall(char *s)  //指针所指向的地址的值</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>while(*s)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>put1(*s); //字符发送函数</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>s++;  //地址指向下一个</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>}</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>}</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>void uart_0() interrupt 4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>if(RI)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>receiveDate = SBUF;  //接收字符</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>RI = 0;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>}</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>}</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>void main()</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>UART_Init(); //串口初始化</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ISR_Init();  //总中断初始化</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>while(1)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>if(receiveDate == ‘A’)  //接收字符为’A’,发送字符串“abcdef  \n”</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>putall(“abcdef  \n”);</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>else if(receiveDate == ‘B’)//接收字符为’B’,发送字符串“psw\n”</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>putall(“psw\n”);</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>}</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>}</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>```</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2. 我们使用虚拟串口驱动，实现端口的映射，如图2-1所示，点击添加端口，实现COM3-&gt;COM4映射（图左侧已实现）</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328192353.png" alt="图2-1 虚拟串口驱动"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3. 如图2-2，所示：在kileC51中右击Target-&gt; Options for Target ‘Target 1’-&gt;Debug,将 Use Simulator，Limit Speed to Real-Time 选中（作用是选择Options for Target ‘Target 1’中Target里Xtal的晶振）。</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328195120.png" alt="Debug"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328195132.png" alt="Target"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>图2-2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4. 如图2-3所示，点击 Start/Stop Debug Session,在keilC51左下角输入MODE COM3 9600,0,8,1 以及ASSIGN COM3 <SIN> SOUT 指令,成功后虚拟串口驱动左侧COM3会出现[9600-N-8-1]</SIN></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328195706.png" alt="图2-3 指令"></td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 </tbody></table>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;reg51.h&gt;</span></span><br><span class="line"></span><br><span class="line">unsigned char receiveDate; </span><br><span class="line"></span><br><span class="line">void UART_Init()</span><br><span class="line">&#123;</span><br><span class="line">  SCON = 0x50;    </span><br><span class="line">  TMOD = 0x20;  </span><br><span class="line">  PCON=PCON&amp;0x7f;</span><br><span class="line">  TH1 = -3;    </span><br><span class="line">  TL1 = -3;</span><br><span class="line">  TR1 = 1;                        </span><br><span class="line">  ES  = 1;     //串口中断允许位  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void put1(char c)</span><br><span class="line">&#123;</span><br><span class="line">	SBUF = c;</span><br><span class="line">	<span class="keyword">while</span>(!TI);</span><br><span class="line">	TI = 0; </span><br><span class="line">&#125;</span><br><span class="line">void ISR_Init()</span><br><span class="line">&#123;</span><br><span class="line">	EA = 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void putall(char *s)  //指针所指向的地址的值</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">while</span>(*s) </span><br><span class="line">	&#123; </span><br><span class="line">		put1(*s); //字符发送函数</span><br><span class="line">		s++;  //地址指向下一个</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void uart_0() interrupt 4</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(RI)</span><br><span class="line">	&#123;</span><br><span class="line">		receiveDate = SBUF;  //接收字符</span><br><span class="line">		RI = 0;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">  UART_Init(); //串口初始化</span><br><span class="line">  ISR_Init();  //总中断初始化</span><br><span class="line">	<span class="keyword">while</span>(1)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(receiveDate == <span class="string">'A'</span>)  //接收字符为<span class="string">'A'</span>,发送字符串“abcdef  \n”</span><br><span class="line">		  putall(<span class="string">"abcdef  \n"</span>);	</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(receiveDate == <span class="string">'B'</span>)//接收字符为<span class="string">'B'</span>,发送字符串“psw\n”</span><br><span class="line">			putall(<span class="string">"psw\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们使用虚拟串口驱动，实现端口的映射，如图2-1所示，点击添加端口，实现COM3-&gt;COM4映射（图左侧已实现）<br><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328192353.png" alt="虚拟串口驱动">   </p>
-<pre><code>图2-1 虚拟串口驱动    </code></pre><p>如图2-2，所示：在kileC51中右击Target-&gt; Options for Target ‘Target 1’-&gt;Debug,将 Use Simulator，Limit Speed to Real-Time 选中（作用是选择Options for Target ‘Target 1’中Target里Xtal的晶振）。<br><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328195120.png" alt="Debug"><br><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328195132.png" alt="Target">   </p>
-<pre><code>图2-2</code></pre><p>如图2-3所示，点击 Start/Stop Debug Session,在keilC51左下角输入MODE COM3 9600,0,8,1 以及ASSIGN COM3 <SIN> SOUT 指令,成功后虚拟串口驱动左侧COM3会出现[9600-N-8-1]<br><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328195706.png" alt="指令">    </SIN></p>
-<pre><code>图2-3 </code></pre><p>在串口助手这里选择COM4端口。这样就实现了串口软件虚拟仿真。<br><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/1585398327274.gif" alt="视频">    </p>
+<ol start="5">
+<li>在串口助手这里选择COM4端口。这样就实现了串口软件虚拟仿真。<br><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/1585398327274.gif" alt="视频">    </li>
+</ol>
 
             </div>
             <hr/>
@@ -612,34 +1000,34 @@
             <div class="reprint__author">
                 <span class="reprint-meta" style="font-weight: bold;">
                     <i class="fas fa-user">
-                        Author:
+                        文章作者:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com" rel="external nofollow noreferrer">Suwan Pan</a>
+                    <a href="https://pan_su_wan.gitee.io" rel="external nofollow noreferrer">Suwan Pan</a>
                 </span>
             </div>
             <div class="reprint__type">
                 <span class="reprint-meta" style="font-weight: bold;">
                     <i class="fas fa-link">
-                        Link:
+                        文章链接:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/">http://yoursite.com/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/</a>
+                    <a href="https://pan_su_wan.gitee.io/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/">https://pan_su_wan.gitee.io/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/</a>
                 </span>
             </div>
             <div class="reprint__notice">
                 <span class="reprint-meta" style="font-weight: bold;">
                     <i class="fas fa-copyright">
-                        Reprint policy:
+                        版权声明:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    All articles in this blog are used except for special statements
+                    本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
-                    reprint polocy. If reproduced, please indicate source
-                    <a href="http://yoursite.com" target="_blank">Suwan Pan</a>
+                    许可协议。转载请注明来源
+                    <a href="https://pan_su_wan.gitee.io" target="_blank">Suwan Pan</a>
                     !
                 </span>
             </div>
@@ -648,7 +1036,7 @@
 
     <script async defer>
       document.addEventListener("copy", function (e) {
-        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
         M.toast({html: toastHTML})
       });
 
@@ -817,6 +1205,33 @@
     </div>
 
     
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'de6b62c8acbbdf16d3a1',
+        clientSecret: 'b8a2d7a10374ef6ddc1f157bbecf1f65c70d1637',
+        repo: '123psw.github.io',
+        owner: '123psw',
+        admin: "123psw",
+        id: '2020-03-28T17-29-03',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+    
 
     
 
@@ -835,7 +1250,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
                 <a href="/2020/04/02/verilog-HDL%E4%BB%BF%E7%9C%9F/">
                     <div class="card-image">
@@ -880,7 +1295,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2020/03/27/android-studio/">
@@ -960,7 +1375,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget">
-            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
             <div id="toc-content"></div>
         </div>
     </div>
@@ -1109,8 +1524,8 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
     <div class="container row center-align" style="margin-bottom: 0px !important;">
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
-            <span id="year">2019</span>
-            <a href="http://yoursite.com" target="_blank">Suwan Pan</a>
+            <span id="year">2020</span>
+            <a href="https://pan_su_wan.gitee.io" target="_blank">Suwan Pan</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
@@ -1178,8 +1593,8 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 <div id="searchModal" class="modal">
     <div class="modal-content">
         <div class="search-header">
-            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
-            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
                    class="search-input">
         </div>
         <div id="searchResult"></div>
@@ -1246,6 +1661,6 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/haru01.model.json"},"display":{"position":"left","width":290,"height":590,"hOffset":195,"vOffset":0},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/haru01.model.json"},"display":{"position":"left","width":290,"height":590,"hOffset":0,"vOffset":0},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
 
 </html>
