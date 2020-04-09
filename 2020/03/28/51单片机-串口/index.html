@@ -460,7 +460,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    675
+                    682
                 </div>
                 
 
@@ -479,8 +479,105 @@
 <li>串行端口缓冲寄存器（SBUF）： 地址是99H。有两个缓冲器，一个是只写发送寄存器，一个是只读接收寄存器。  </li>
 <li>串行端口控制寄存器（SCON）：地址是98H，可以位寻址。如表1-1所示：  </li>
 </ol>
-<p>表1-1SCON简表<br>位|符号|地址|模式<br>-|-|-|-<br>SCON.7|SM0|9FH|串行端口模式位0<br>SCON.6|SM1|9EH|串行端口模式位1<br>SCON.5|SM2|9DH|串行端口模式位2<br>SCON.4|REN|9CH|置1为允许接收<br>SCON.3|TB8|9BH|发送数据的位8<br>SCON.2|RB0|9AH|接收数据的位8<br>SCON.1|TI|99H|发送中断标志，字符数据发送完毕时硬件置位，由软件清零<br>SCON.0|RI|98H|接收中断标志，字符数据发送完毕时硬件置位，由软件清零   </p>
-<p>表1-2串行端口工作模式<br>SM0|SM1|模式|描述|波特率<br>-|-|-|-|-<br>0|0|0|移位寄存器|固定<br>0|1|1|8位UART|可变（由定时器T1控制）<br>1|0|2|9位UART|固定<br>1|1|3|9位UART|可变    </p>
+<p>表1-1SCON简表  </p>
+<table>
+<thead>
+<tr>
+<th>位</th>
+<th>符号</th>
+<th>地址</th>
+<th>模式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SCON.7</td>
+<td>SM0</td>
+<td>9FH</td>
+<td>串行端口模式位0</td>
+</tr>
+<tr>
+<td>SCON.6</td>
+<td>SM1</td>
+<td>9EH</td>
+<td>串行端口模式位1</td>
+</tr>
+<tr>
+<td>SCON.5</td>
+<td>SM2</td>
+<td>9DH</td>
+<td>串行端口模式位2</td>
+</tr>
+<tr>
+<td>SCON.4</td>
+<td>REN</td>
+<td>9CH</td>
+<td>置1为允许接收</td>
+</tr>
+<tr>
+<td>SCON.3</td>
+<td>TB8</td>
+<td>9BH</td>
+<td>发送数据的位8</td>
+</tr>
+<tr>
+<td>SCON.2</td>
+<td>RB0</td>
+<td>9AH</td>
+<td>接收数据的位8</td>
+</tr>
+<tr>
+<td>SCON.1</td>
+<td>TI</td>
+<td>99H</td>
+<td>发送中断标志，字符数据发送完毕时硬件置位，由软件清零</td>
+</tr>
+<tr>
+<td>SCON.0</td>
+<td>RI</td>
+<td>98H</td>
+<td>接收中断标志，字符数据发送完毕时硬件置位，由软件清零</td>
+</tr>
+</tbody></table>
+<p>表1-2串行端口工作模式  </p>
+<table>
+<thead>
+<tr>
+<th>SM0</th>
+<th>SM1</th>
+<th>模式</th>
+<th>描述</th>
+<th>波特率</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>移位寄存器</td>
+<td>固定</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>8位UART</td>
+<td>可变（由定时器T1控制）</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>9位UART</td>
+<td>固定</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>9位UART</td>
+<td>可变</td>
+</tr>
+</tbody></table>
 <p>这里我用的是模式1实现串口通信。</p>
 <h2 id="keilC51-工程"><a href="#keilC51-工程" class="headerlink" title="keilC51 工程"></a>keilC51 工程</h2><ol>
 <li>这里，我以接收字符’A’,’B’控制发送字符，使用串口中断试下字符接收与发送。代码如下：  </li>
@@ -1029,53 +1126,6 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 
     <footer class="page-footer bg-color">
-    
-        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
-<style>
-    .aplayer .aplayer-lrc p {
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 16px !important;
-    }
-
-    .aplayer .aplayer-lrc p.aplayer-lrc-current {
-        font-size: 15px;
-        color: #42b983;
-    }
-
-    
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-        left: -66px !important;
-    }
-
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
-        left: 0px !important;
-    }
-
-    
-</style>
-<div class="">
-    
-    <div class="row">
-        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
-                   server="netease"
-                   type="playlist"
-                   id="503838841"
-                   fixed='true'
-                   autoplay='false'
-                   theme='#42b983'
-                   loop='all'
-                   order='random'
-                   preload='auto'
-                   volume='0.7'
-                   list-folded='true'
-        >
-        </meting-js>
-    </div>
-</div>
-
-<script src="/libs/aplayer/APlayer.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
     
     <div class="container row center-align" style="margin-bottom: 0px !important;">
         <div class="col s12 m8 l8 copy-right">
