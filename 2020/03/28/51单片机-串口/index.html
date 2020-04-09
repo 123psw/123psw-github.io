@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="/css/my.css">
 
     <script src="/libs/jquery/jquery.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
 <meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
@@ -121,58 +122,6 @@
       
       <span>友情链接</span>
     </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="" class="waves-effect waves-light">
-
-      
-      <i class="fas fa-list" style="zoom: 0.6;"></i>
-      
-      <span>Medias</span>
-      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
-    </a>
-    <ul class="sub-nav menus_item_child ">
-      
-      <li>
-        <a href="/musics">
-          
-          <i class="fas fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
-          
-          <span>Musics</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/movies">
-          
-          <i class="fas fa-film" style="margin-top: -20px; zoom: 0.6;"></i>
-          
-          <span>Movies</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/books">
-          
-          <i class="fas fa-book" style="margin-top: -20px; zoom: 0.6;"></i>
-          
-          <span>Books</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/galleries">
-          
-          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
-          
-          <span>Galleries</span>
-        </a>
-      </li>
-      
-    </ul>
     
   </li>
   
@@ -275,61 +224,6 @@
 			
 			友情链接
 		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
-		<a href="javascript:;">
-			
-				<i class="fa-fw fas fa-list"></i>
-			
-			Medias
-			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
-		</a>
-            <ul  style="background:  ;" >
-              
-                <li>   
-				
-                  <a href="/musics " style="margin-left:75px";>
-				  
-				   <i class="fa fas fa-music" style="position: absolute;left:50px" ></i>
-			      
-		          <span>Musics</span>
-                  </a>
-                </li>
-              
-                <li>   
-				
-                  <a href="/movies " style="margin-left:75px";>
-				  
-				   <i class="fa fas fa-film" style="position: absolute;left:50px" ></i>
-			      
-		          <span>Movies</span>
-                  </a>
-                </li>
-              
-                <li>   
-				
-                  <a href="/books " style="margin-left:75px";>
-				  
-				   <i class="fa fas fa-book" style="position: absolute;left:50px" ></i>
-			      
-		          <span>Books</span>
-                  </a>
-                </li>
-              
-                <li>   
-				
-                  <a href="/galleries " style="margin-left:75px";>
-				  
-				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
-			      
-		          <span>Galleries</span>
-                  </a>
-                </li>
-               
-            </ul>
           
         </li>
         
@@ -566,7 +460,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    682
+                    675
                 </div>
                 
 
@@ -582,495 +476,74 @@
                 <h2 id="串口"><a href="#串口" class="headerlink" title="串口"></a>串口</h2><a id="more"></a>
 <h3 id="串口的发送与接收"><a href="#串口的发送与接收" class="headerlink" title="串口的发送与接收"></a>串口的发送与接收</h3><p>简单理解一下，51单片机的串口，是个全双工的串口，发送数据的同时，还可以接收数据。  </p>
 <h4 id="串口有以下几个寄存器"><a href="#串口有以下几个寄存器" class="headerlink" title="串口有以下几个寄存器"></a>串口有以下几个寄存器</h4><ol>
-<li><p>串行端口缓冲寄存器（SBUF）： 地址是99H。有两个缓冲器，一个是只写发送寄存器，一个是只读接收寄存器。  </p>
-</li>
-<li><p>串行端口控制寄存器（SCON）：地址是98H，可以位寻址。如表1-1所示：  </p>
-<p>  表1-1 SCON简表<br>位  |  符号  |  地址  |  模式  </p>
-</li>
+<li>串行端口缓冲寄存器（SBUF）： 地址是99H。有两个缓冲器，一个是只写发送寄存器，一个是只读接收寄存器。  </li>
+<li>串行端口控制寄存器（SCON）：地址是98H，可以位寻址。如表1-1所示：  </li>
 </ol>
-<p>——  | ——  | —— | ——<br>SCON.7  |  SM0  |  9FH  | 串行端口模式位0<br>SCON.6  |  SM1  |  9EH  | 串行端口模式位1<br>SCON.5  |  SM2  |  9DH  | 串行端口模式位2<br>SCON.4  |  REN  |  9CH  | 置1为允许接收<br>SCON.3  |  TB8  |  9BH  | 发送数据的位8<br>SCON.2  |  RB0  |  9AH  | 接收数据的位8<br>SCON.1  |  TI  |  99H  | 发送中断标志，字符数据发送完毕时硬件置位，由软件清零<br>SCON.0  |  RI  |  98H  | 接收中断标志，字符数据发送完毕时硬件置位，由软件清零   </p>
-<pre><code> 表1-2 串行端口工作模式  </code></pre><table>
-<thead>
-<tr>
-<th>SM0</th>
-<th>SM1</th>
-<th>模式</th>
-<th>描述</th>
-<th>波特率</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>移位寄存器</td>
-<td>固定</td>
-</tr>
-<tr>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-<td>8位UART</td>
-<td>可变（由定时器T1控制）</td>
-</tr>
-<tr>
-<td>1</td>
-<td>0</td>
-<td>2</td>
-<td>9位UART</td>
-<td>固定</td>
-</tr>
-<tr>
-<td>1</td>
-<td>1</td>
-<td>3</td>
-<td>9位UART</td>
-<td>可变</td>
-</tr>
-<tr>
-<td>这里我用的是模式1实现串口通信。</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>## keilC51 工程</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>1. 这里，我以接收字符’A’,’B’控制发送字符，使用串口中断试下字符接收与发送。代码如下：</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>``` bash</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>#include &lt;reg51.h&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>unsigned char receiveDate;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>void UART_Init()</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>{</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>SCON = 0x50;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>TMOD = 0x20;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>PCON=PCON&0x7f;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>TH1 = -3;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>TL1 = -3;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>TR1 = 1;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>ES  = 1;     //串口中断允许位</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>}</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>void put1(char c)</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>{</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>SBUF = c;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>while(!TI);</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>TI = 0;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>}</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>void ISR_Init()</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>{</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>EA = 1;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>}</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>void putall(char *s)  //指针所指向的地址的值</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>{</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>while(*s)</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>{</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>put1(*s); //字符发送函数</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>s++;  //地址指向下一个</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>}</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>}</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>void uart_0() interrupt 4</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>{</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>if(RI)</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>{</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>receiveDate = SBUF;  //接收字符</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>RI = 0;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>}</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>}</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>void main()</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>{</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>UART_Init(); //串口初始化</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>ISR_Init();  //总中断初始化</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>while(1)</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>{</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>if(receiveDate == ‘A’)  //接收字符为’A’,发送字符串“abcdef  \n”</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>putall(“abcdef  \n”);</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>else if(receiveDate == ‘B’)//接收字符为’B’,发送字符串“psw\n”</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>putall(“psw\n”);</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>}</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>}</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>```</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>2. 我们使用虚拟串口驱动，实现端口的映射，如图2-1所示，点击添加端口，实现COM3-&gt;COM4映射（图左侧已实现）</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328192353.png" alt="图2-1 虚拟串口驱动"></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>3. 如图2-2，所示：在kileC51中右击Target-&gt; Options for Target ‘Target 1’-&gt;Debug,将 Use Simulator，Limit Speed to Real-Time 选中（作用是选择Options for Target ‘Target 1’中Target里Xtal的晶振）。</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328195120.png" alt="Debug"></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328195132.png" alt="Target"></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>图2-2</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>4. 如图2-3所示，点击 Start/Stop Debug Session,在keilC51左下角输入MODE COM3 9600,0,8,1 以及ASSIGN COM3 <SIN> SOUT 指令,成功后虚拟串口驱动左侧COM3会出现[9600-N-8-1]</SIN></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328195706.png" alt="图2-3 指令"></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<ol start="5">
-<li>在串口助手这里选择COM4端口。这样就实现了串口软件虚拟仿真。<br><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/1585398327274.gif" alt="视频">    </li>
+<p>表1-1SCON简表<br>位|符号|地址|模式<br>-|-|-|-<br>SCON.7|SM0|9FH|串行端口模式位0<br>SCON.6|SM1|9EH|串行端口模式位1<br>SCON.5|SM2|9DH|串行端口模式位2<br>SCON.4|REN|9CH|置1为允许接收<br>SCON.3|TB8|9BH|发送数据的位8<br>SCON.2|RB0|9AH|接收数据的位8<br>SCON.1|TI|99H|发送中断标志，字符数据发送完毕时硬件置位，由软件清零<br>SCON.0|RI|98H|接收中断标志，字符数据发送完毕时硬件置位，由软件清零   </p>
+<p>表1-2串行端口工作模式<br>SM0|SM1|模式|描述|波特率<br>-|-|-|-|-<br>0|0|0|移位寄存器|固定<br>0|1|1|8位UART|可变（由定时器T1控制）<br>1|0|2|9位UART|固定<br>1|1|3|9位UART|可变    </p>
+<p>这里我用的是模式1实现串口通信。</p>
+<h2 id="keilC51-工程"><a href="#keilC51-工程" class="headerlink" title="keilC51 工程"></a>keilC51 工程</h2><ol>
+<li>这里，我以接收字符’A’,’B’控制发送字符，使用串口中断试下字符接收与发送。代码如下：  </li>
+</ol>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#include &lt;reg51.h></span>
+unsigned char receiveDate<span class="token punctuation">;</span> 
+void UART_Init<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  SCON <span class="token operator">=</span> 0x50<span class="token punctuation">;</span>    
+  TMOD <span class="token operator">=</span> 0x20<span class="token punctuation">;</span>  
+  PCON<span class="token operator">=</span>PCON<span class="token operator">&amp;</span>0x7f<span class="token punctuation">;</span>
+  TH1 <span class="token operator">=</span> -3<span class="token punctuation">;</span>    
+  TL1 <span class="token operator">=</span> -3<span class="token punctuation">;</span>
+  TR1 <span class="token operator">=</span> 1<span class="token punctuation">;</span>                        
+  ES  <span class="token operator">=</span> 1<span class="token punctuation">;</span>     //串口中断允许位  
+<span class="token punctuation">}</span>
+void put1<span class="token punctuation">(</span>char c<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    SBUF <span class="token operator">=</span> c<span class="token punctuation">;</span>
+    while<span class="token punctuation">(</span><span class="token operator">!</span>TI<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    TI <span class="token operator">=</span> 0<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
+void ISR_Init<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    EA <span class="token operator">=</span> 1<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+void putall<span class="token punctuation">(</span>char *s<span class="token punctuation">)</span>  //指针所指向的地址的值
+<span class="token punctuation">{</span>
+    while<span class="token punctuation">(</span>*s<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span> 
+        put1<span class="token punctuation">(</span>*s<span class="token punctuation">)</span><span class="token punctuation">;</span> //字符发送函数
+        s++<span class="token punctuation">;</span>  //地址指向下一个
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+void uart_0<span class="token punctuation">(</span><span class="token punctuation">)</span> interrupt 4
+<span class="token punctuation">{</span>
+    if<span class="token punctuation">(</span>RI<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        receiveDate <span class="token operator">=</span> SBUF<span class="token punctuation">;</span>  //接收字符
+        RI <span class="token operator">=</span> 0<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+void main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  UART_Init<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> //串口初始化
+  ISR_Init<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  //总中断初始化
+    while<span class="token punctuation">(</span>1<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        if<span class="token punctuation">(</span>receiveDate <span class="token operator">==</span> <span class="token string">'A'</span><span class="token punctuation">)</span>  //接收字符为<span class="token string">'A'</span>,发送字符串“abcdef  \n”
+          putall<span class="token punctuation">(</span><span class="token string">"abcdef  \n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    
+        <span class="token keyword">else</span> if<span class="token punctuation">(</span>receiveDate <span class="token operator">==</span> <span class="token string">'B'</span><span class="token punctuation">)</span>//接收字符为<span class="token string">'B'</span>,发送字符串“psw\n”
+            putall<span class="token punctuation">(</span><span class="token string">"psw\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<ol start="2">
+<li><p>我们使用虚拟串口驱动，实现端口的映射，如图2-1所示，点击添加端口，实现COM3-&gt;COM4映射（图左侧已实现）<br><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328192353.png" alt="图2-1 虚拟串口驱动">       </p>
+</li>
+<li><p>如图2-2，所示：在kileC51中右击Target-&gt; Options for Target ‘Target 1’-&gt;Debug,将 Use Simulator，Limit Speed to Real-Time 选中（作用是选择Options for Target ‘Target 1’中Target里Xtal的晶振）。<br><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328195120.png" alt="Debug"><br><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328195132.png" alt="Target"><br>图2-2</p>
+</li>
+<li><p>如图2-3所示，点击 Start/Stop Debug Session,在keilC51左下角输入MODE COM3 9600,0,8,1 以及ASSIGN COM3 <SIN> SOUT 指令,成功后虚拟串口驱动左侧COM3会出现[9600-N-8-1]<br><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/20200328195706.png" alt="图2-3 指令">    </SIN></p>
+</li>
+<li><p>在串口助手这里选择COM4端口。这样就实现了串口软件虚拟仿真。<br><img src="/2020/03/28/51%E5%8D%95%E7%89%87%E6%9C%BA-%E4%B8%B2%E5%8F%A3/1585398327274.gif" alt="视频">    </p>
+</li>
 </ol>
 
             </div>
@@ -1087,7 +560,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://pan_su_wan.gitee.io" rel="external nofollow noreferrer">Suwan Pan</a>
+                    <a href="https://pan_su_wan.gitee.io" rel="external nofollow noreferrer">潘苏皖</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -1110,7 +583,7 @@
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="https://pan_su_wan.gitee.io" target="_blank">Suwan Pan</a>
+                    <a href="https://pan_su_wan.gitee.io" target="_blank">潘苏皖</a>
                     !
                 </span>
             </div>
@@ -1358,7 +831,7 @@
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
-                            Suwan Pan
+                            潘苏皖
                             
                         </span>
                     </div>
@@ -1406,7 +879,7 @@ app下面有3个子目录，功能说明如下：
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
-                            Suwan Pan
+                            潘苏皖
                             
                         </span>
                     </div>
@@ -1608,7 +1081,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             <span id="year">2020</span>
-            <a href="https://pan_su_wan.gitee.io" target="_blank">Suwan Pan</a>
+            <a href="https://pan_su_wan.gitee.io" target="_blank">潘苏皖</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
@@ -1704,7 +1177,17 @@ $(function () {
     <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
     <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
     <script src="/js/matery.js"></script>
-
+    <!--动态线条背景-->
+    <script type="text/javascript"
+      color="106 90 205" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+    </script>
+    <script type="text/javascript">
+        //只在桌面版网页启用特效
+        var windowWidth = $(window).width();
+        if (windowWidth > 768) {
+            document.write('<script type="text/javascript" src="/js/sakura.js"><\/script>');
+        }
+        </script>
     <!-- Baidu Analytics -->
 
     <!-- Baidu Push -->
