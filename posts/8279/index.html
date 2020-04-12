@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="51单片机发送与接收, 平湖烟雨">
+    <meta name="keywords" content="verilog-HDL仿真, 平湖烟雨">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -15,7 +15,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>51单片机发送与接收 | 平湖烟雨</title>
+    <title>verilog-HDL仿真 | 平湖烟雨</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -305,12 +305,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">51单片机发送与接收</h1>
+                    <h1 class="description center-align post-title">verilog-HDL仿真</h1>
                 </div>
             </div>
         </div>
@@ -435,14 +435,23 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/51%E5%8D%95%E7%89%87%E6%9C%BA/">
-                                <span class="chip bg-color">51单片机</span>
+                            <a href="/tags/%E9%9A%8F%E7%AC%94/">
+                                <span class="chip bg-color">随笔</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E9%9A%8F%E7%AC%94/" class="post-category">
+                                随笔
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -451,7 +460,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-28
+                    2020-04-02
                 </div>
                 
 
@@ -460,7 +469,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    682
+                    694
                 </div>
                 
 
@@ -473,173 +482,71 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="串口"><a href="#串口" class="headerlink" title="串口"></a>串口</h2><a id="more"></a>
-<h3 id="串口的发送与接收"><a href="#串口的发送与接收" class="headerlink" title="串口的发送与接收"></a>串口的发送与接收</h3><p>简单理解一下，51单片机的串口，是个全双工的串口，发送数据的同时，还可以接收数据。  </p>
-<h4 id="串口有以下几个寄存器"><a href="#串口有以下几个寄存器" class="headerlink" title="串口有以下几个寄存器"></a>串口有以下几个寄存器</h4><ol>
-<li>串行端口缓冲寄存器（SBUF）： 地址是99H。有两个缓冲器，一个是只写发送寄存器，一个是只读接收寄存器。  </li>
-<li>串行端口控制寄存器（SCON）：地址是98H，可以位寻址。如表1-1所示：  </li>
+                <h2 id="关于modelsim仿真"><a href="#关于modelsim仿真" class="headerlink" title="关于modelsim仿真"></a>关于modelsim仿真</h2><a id="more"></a>
+<p>  modelsim是单内核支持VHDL和Verilog HDL混合仿真的仿真器，是做FPGA/ASIC设计的RTL级和门级电路仿真的好选择。modelsim仿真<br>  本身就是编写testbench的过程。通过Testbench模块向待测模块输出信号作为激励，同时接收从待测模块输出的信号来查看结果。本文<br>  介绍如何实现Verilog HDL仿真。 </p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li><p>打开modelsim软件，选择File-&gt;new-&gt;Library…,出现如图1-1所示的界面创建库,<br>选择 a new library and a logical mapping to it , 在Library Name 下写work，点击ok。<br><img src="/posts/8279/20200402194936.png" alt="图 1-1 创建库 ">  </p>
+</li>
+<li><p>接下来选择 File-&gt;new-&gt;Project… , 出现如图1-2所示的界面创建工程环境。<br>依次为工程文件名，文件存放位置，所在的库。<br><img src="/posts/8279/20200402194906.png" alt="图1-2 创建工程">   </p>
+</li>
 </ol>
-<p>表1-1SCON简表  </p>
-<table>
-<thead>
-<tr>
-<th>位</th>
-<th>符号</th>
-<th>地址</th>
-<th>模式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>SCON.7</td>
-<td>SM0</td>
-<td>9FH</td>
-<td>串行端口模式位0</td>
-</tr>
-<tr>
-<td>SCON.6</td>
-<td>SM1</td>
-<td>9EH</td>
-<td>串行端口模式位1</td>
-</tr>
-<tr>
-<td>SCON.5</td>
-<td>SM2</td>
-<td>9DH</td>
-<td>串行端口模式位2</td>
-</tr>
-<tr>
-<td>SCON.4</td>
-<td>REN</td>
-<td>9CH</td>
-<td>置1为允许接收</td>
-</tr>
-<tr>
-<td>SCON.3</td>
-<td>TB8</td>
-<td>9BH</td>
-<td>发送数据的位8</td>
-</tr>
-<tr>
-<td>SCON.2</td>
-<td>RB0</td>
-<td>9AH</td>
-<td>接收数据的位8</td>
-</tr>
-<tr>
-<td>SCON.1</td>
-<td>TI</td>
-<td>99H</td>
-<td>发送中断标志，字符数据发送完毕时硬件置位，由软件清零</td>
-</tr>
-<tr>
-<td>SCON.0</td>
-<td>RI</td>
-<td>98H</td>
-<td>接收中断标志，字符数据发送完毕时硬件置位，由软件清零</td>
-</tr>
-</tbody></table>
-<p>表1-2串行端口工作模式  </p>
-<table>
-<thead>
-<tr>
-<th>SM0</th>
-<th>SM1</th>
-<th>模式</th>
-<th>描述</th>
-<th>波特率</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>移位寄存器</td>
-<td>固定</td>
-</tr>
-<tr>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-<td>8位UART</td>
-<td>可变（由定时器T1控制）</td>
-</tr>
-<tr>
-<td>1</td>
-<td>0</td>
-<td>2</td>
-<td>9位UART</td>
-<td>固定</td>
-</tr>
-<tr>
-<td>1</td>
-<td>1</td>
-<td>3</td>
-<td>9位UART</td>
-<td>可变</td>
-</tr>
-</tbody></table>
-<p>这里我用的是模式1实现串口通信。</p>
-<h2 id="keilC51-工程"><a href="#keilC51-工程" class="headerlink" title="keilC51 工程"></a>keilC51 工程</h2><ol>
-<li>这里，我以接收字符’A’,’B’控制发送字符，使用串口中断试下字符接收与发送。代码如下：  </li>
-</ol>
-<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#include &lt;reg51.h></span>
-unsigned char receiveDate<span class="token punctuation">;</span> 
-void UART_Init<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-  SCON <span class="token operator">=</span> 0x50<span class="token punctuation">;</span>    
-  TMOD <span class="token operator">=</span> 0x20<span class="token punctuation">;</span>  
-  PCON<span class="token operator">=</span>PCON<span class="token operator">&amp;</span>0x7f<span class="token punctuation">;</span>
-  TH1 <span class="token operator">=</span> -3<span class="token punctuation">;</span>    
-  TL1 <span class="token operator">=</span> -3<span class="token punctuation">;</span>
-  TR1 <span class="token operator">=</span> 1<span class="token punctuation">;</span>                        
-  ES  <span class="token operator">=</span> 1<span class="token punctuation">;</span>     //串口中断允许位  
-<span class="token punctuation">}</span>
-void put1<span class="token punctuation">(</span>char c<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    SBUF <span class="token operator">=</span> c<span class="token punctuation">;</span>
-    while<span class="token punctuation">(</span><span class="token operator">!</span>TI<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    TI <span class="token operator">=</span> 0<span class="token punctuation">;</span> 
-<span class="token punctuation">}</span>
-void ISR_Init<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    EA <span class="token operator">=</span> 1<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-void putall<span class="token punctuation">(</span>char *s<span class="token punctuation">)</span>  //指针所指向的地址的值
-<span class="token punctuation">{</span>
-    while<span class="token punctuation">(</span>*s<span class="token punctuation">)</span> 
-    <span class="token punctuation">{</span> 
-        put1<span class="token punctuation">(</span>*s<span class="token punctuation">)</span><span class="token punctuation">;</span> //字符发送函数
-        s++<span class="token punctuation">;</span>  //地址指向下一个
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-void uart_0<span class="token punctuation">(</span><span class="token punctuation">)</span> interrupt 4
-<span class="token punctuation">{</span>
-    if<span class="token punctuation">(</span>RI<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        receiveDate <span class="token operator">=</span> SBUF<span class="token punctuation">;</span>  //接收字符
-        RI <span class="token operator">=</span> 0<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-void main<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-  UART_Init<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> //串口初始化
-  ISR_Init<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  //总中断初始化
-    while<span class="token punctuation">(</span>1<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        if<span class="token punctuation">(</span>receiveDate <span class="token operator">==</span> <span class="token string">'A'</span><span class="token punctuation">)</span>  //接收字符为<span class="token string">'A'</span>,发送字符串“abcdef  \n”
-          putall<span class="token punctuation">(</span><span class="token string">"abcdef  \n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    
-        <span class="token keyword">else</span> if<span class="token punctuation">(</span>receiveDate <span class="token operator">==</span> <span class="token string">'B'</span><span class="token punctuation">)</span>//接收字符为<span class="token string">'B'</span>,发送字符串“psw\n”
-            putall<span class="token punctuation">(</span><span class="token string">"psw\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<ol start="2">
-<li><p>我们使用虚拟串口驱动，实现端口的映射，如图2-1所示，点击添加端口，实现COM3-&gt;COM4映射（图左侧已实现）<br><img src="/posts/20200328192353.png" alt="图2-1 虚拟串口驱动">       </p>
+<ol start="3">
+<li><p>在空白处右击，选择Add To Project-&gt;Existing File… ,出现如图1-3所示的界面，<br>点击Browse…，选择所仿真的文件,这里我选择的文件c.v代码在下面。<br><img src="/posts/8279/20200402202523.png" alt="图1-3  添加文件 ">     </p>
 </li>
-<li><p>如图2-2，所示：在kileC51中右击Target-&gt; Options for Target ‘Target 1’-&gt;Debug,将 Use Simulator，Limit Speed to Real-Time 选中（作用是选择Options for Target ‘Target 1’中Target里Xtal的晶振）。<br><img src="/posts/20200328195120.png" alt="Debug"><br><img src="/posts/20200328195132.png" alt="Target"><br>图2-2</p>
+<li><p>点击new file ，在软件右侧出现文本框，输入以下代码进行保存，文件名与module后的名字一样如下面代码tb2.v。  </p>
+<pre class=" language-bash"><code class="language-bash"><span class="token variable"><span class="token variable">`</span>timescale 1ns/1ns
+<span class="token variable">`</span></span>include<span class="token string">"./c.v"</span>
+module tb2<span class="token punctuation">;</span>
+reg clk<span class="token punctuation">;</span>
+wire L1,L2<span class="token punctuation">;</span>
+initial 
+begin
+clk<span class="token operator">=</span>0<span class="token punctuation">;</span>
+end
+always <span class="token comment" spellcheck="true">#10 clk=~clk;</span>
+c i1<span class="token punctuation">(</span>.clk<span class="token punctuation">(</span>clk<span class="token punctuation">)</span>,.L1<span class="token punctuation">(</span>L1<span class="token punctuation">)</span>,.L2<span class="token punctuation">(</span>L2<span class="token punctuation">))</span><span class="token punctuation">;</span>
+endmodule  </code></pre>
+<p>`timescale 1ns/1ns 是用来时间轴设置的，这里表示仿真的时间轴单位是1ns，仿真工具仿真的最大精度只到1ns内的逻辑变化。<br>待测模块中的reg型信号在Testbench中就变成了wire，待测模块中的wire型信号在Testbench中则对应为reg型。<br>initial 表示初始化。<br>always #10 clk=~clk;是用来时钟产生的，这里表示每10ns（与时间轴设置有关），clk来一次高低电平转换。<br>c i1(.clk(clk),.L1(L1),.L2(L2));c是我们想要仿真的模块，il是我们创建的对象名，类似于java中的类与对象关系。  </p>
 </li>
-<li><p>如图2-3所示，点击 Start/Stop Debug Session,在keilC51左下角输入MODE COM3 9600,0,8,1 以及ASSIGN COM3 <SIN> SOUT 指令,成功后虚拟串口驱动左侧COM3会出现[9600-N-8-1]<br><img src="/posts/20200328195706.png" alt="图2-3 指令">    </SIN></p>
+<li><p>完成保存后，按照3的步骤将tb2.v添加进来。然后鼠标右击，选择Compile-&gt;Compile All,界面出现如图1-4 所示，<br>如果左下角出现红色字体，说明模块编译错误。<br><img src="/posts/8279/20200402205728.png" alt="图1-4  编译">     </p>
 </li>
-<li><p>在串口助手这里选择COM4端口。这样就实现了串口软件虚拟仿真。<br><img src="/posts/1585398327274.gif" alt="视频">    </p>
+<li><p>点击左下角Library，选择work-&gt;tb2,右击Simulate,如果work为空，重启该软件。完成后，选择左侧的il，右击选择Add All。出现图1-5所示的界面。<br><img src="/posts/8279/20200402210711.png" alt="图 1-5 仿真界面">    </p>
+</li>
+<li><p>最后选择Simulate-&gt;Run-&gt;Run-All,然后点击Wave -default下的变量，出现下图1-6运行的仿真。<br><img src="/posts/8279/20200402193941.png" alt="图1-6 仿真运行">   </p>
+<h2 id="代码-c-v"><a href="#代码-c-v" class="headerlink" title="代码 c.v"></a>代码 c.v</h2><pre class=" language-bash"><code class="language-bash"> module c<span class="token punctuation">(</span>L1,L2,clk<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  output L1,L2<span class="token punctuation">;</span>
+  input clk<span class="token punctuation">;</span>
+  reg L1,L2<span class="token punctuation">;</span>
+  reg<span class="token punctuation">[</span>1:0<span class="token punctuation">]</span> counter1<span class="token punctuation">;</span>
+  reg<span class="token punctuation">[</span>3:0<span class="token punctuation">]</span> counter2<span class="token punctuation">;</span>
+  initial 
+   begin 
+    L1<span class="token operator">=</span>1<span class="token string">'b1;
+    L2=1'</span>b1<span class="token punctuation">;</span>
+    counter1<span class="token operator">=</span>0<span class="token punctuation">;</span>
+    counter2<span class="token operator">=</span>0<span class="token punctuation">;</span>
+   end 
+  always@<span class="token punctuation">(</span>posedge clk<span class="token punctuation">)</span>
+   begin
+    counter1<span class="token operator">=</span>counter1+1<span class="token punctuation">;</span>
+    if<span class="token punctuation">(</span>counter1<span class="token operator">==</span>2<span class="token string">'d3)
+     begin
+      L1=~L1;
+      counter1=0;
+     end
+   end
+  always@(posedge clk)
+   begin
+    counter2=counter2+1;
+    if(counter2==4'</span>d12<span class="token punctuation">)</span>
+     begin
+      L2<span class="token operator">=</span>~L2<span class="token punctuation">;</span>
+      counter2<span class="token operator">=</span>0<span class="token punctuation">;</span>
+     end
+   end
+ endmodule </code></pre>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=1424449933&auto=1&height=66"></iframe>
+
 </li>
 </ol>
 
@@ -667,7 +574,7 @@ void main<span class="token punctuation">(</span><span class="token punctuation"
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://pan_su_wan.gitee.io/posts/17792.html">https://pan_su_wan.gitee.io/posts/17792.html</a>
+                    <a href="https://pan_su_wan.gitee.io/posts/8279/">https://pan_su_wan.gitee.io/posts/8279/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -705,8 +612,8 @@ void main<span class="token punctuation">(</span><span class="token punctuation"
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/51%E5%8D%95%E7%89%87%E6%9C%BA/">
-                                    <span class="chip bg-color">51单片机</span>
+                                <a href="/tags/%E9%9A%8F%E7%AC%94/">
+                                    <span class="chip bg-color">随笔</span>
                                 </a>
                             
                         </div>
@@ -877,7 +784,7 @@ void main<span class="token punctuation">(</span><span class="token punctuation"
         repo: '123psw.github.io',
         owner: '123psw',
         admin: "123psw",
-        id: '2020-03-28T17-29-03',
+        id: '2020-04-02T17-53-10',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -905,32 +812,32 @@ void main<span class="token punctuation">(</span><span class="token punctuation"
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/8279.html">
+                <a href="/posts/34449/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="verilog-HDL仿真">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="基于stm32cubemx实现串口接收与发送-基础">
                         
-                        <span class="card-title">verilog-HDL仿真</span>
+                        <span class="card-title">基于stm32cubemx实现串口接收与发送-基础</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于modelsim仿真
-  modelsim是单内核支持VHDL和Verilog HDL混合仿真的仿真器，是做FPGA/ASIC设计的RTL级和门级电路仿真的好选择。modelsim仿真  本身就是编写testbench的过程。通过Tes
+                            串口是什么
+串行接口简称串口，也称 串行通信接口或 串行通讯接口（通常指 COM接口），是采用串行通信方式的扩展接口。串行接口 (Serial Interface) 是指数据一位一位地顺序传送，其特点是 通信线路简单，只要一对传输线就可以实
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-02
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-12
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E9%9A%8F%E7%AC%94/" class="post-category">
-                                    随笔
+                            <a href="/categories/STM32CubeMx/" class="post-category">
+                                    STM32CubeMx
                                 </a>
                             
                             
@@ -940,8 +847,8 @@ void main<span class="token punctuation">(</span><span class="token punctuation"
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E9%9A%8F%E7%AC%94/">
-                        <span class="chip bg-color">随笔</span>
+                    <a href="/tags/STM32/">
+                        <span class="chip bg-color">STM32</span>
                     </a>
                     
                 </div>
@@ -955,36 +862,32 @@ void main<span class="token punctuation">(</span><span class="token punctuation"
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/61305.html">
+                <a href="/posts/17792/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="android studio/app的工程结构">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="51单片机发送与接收">
                         
-                        <span class="card-title">android studio/app的工程结构</span>
+                        <span class="card-title">51单片机发送与接收</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            App的工程结构
-1.工程目录说明如图1-1所示，该工程有两个目录：一个是app,另一个是Gradle Scripts。
-app下面有3个子目录，功能说明如下：
-(1)manifests目录，下面只有一个xml文件，AndroidManif
+                            串口
+串口的发送与接收简单理解一下，51单片机的串口，是个全双工的串口，发送数据的同时，还可以接收数据。  
+串口有以下几个寄存器
+串行端口缓冲寄存器（SBUF）： 地址是99H。有两个缓冲器，一个是只写发送寄存器，一个是只读接收寄存器。 
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-28
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/ANDROID-STUDIO/" class="post-category">
-                                    ANDROID-STUDIO
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            潘苏皖
                             
                         </span>
                     </div>
@@ -992,8 +895,8 @@ app下面有3个子目录，功能说明如下：
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/ANDROID-STUDIO/">
-                        <span class="chip bg-color">ANDROID-STUDIO</span>
+                    <a href="/tags/51%E5%8D%95%E7%89%87%E6%9C%BA/">
+                        <span class="chip bg-color">51单片机</span>
                     </a>
                     
                 </div>
