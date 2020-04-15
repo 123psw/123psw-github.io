@@ -486,17 +486,21 @@
 <p>串行接口简称串口，也称 串行通信接口或 串行通讯接口（通常指 COM接口），是采用串行通信方式的扩展接口。串行接口 (Serial Interface) 是指数据一位一位地顺序传送，其特点是 通信线路简单，只要一对传输线就可以实现双向通信（可以直接利用电话线作为传输线），从而大大降低了成本，特别适用于远距离通信，但传送速度较慢。</p>
 </blockquote>
 <h2 id="串口的意义"><a href="#串口的意义" class="headerlink" title="串口的意义"></a>串口的意义</h2><p>现如今，智能家电，智能手机等一系列智能出现，方便了人们的活动。尤其是串口和蓝牙连接，可与实现无线数据之间的信息交流。这样就可以实现一台设备控制另一台设备。方便人们的生活。  </p>
-<h2 id="串口的实现"><a href="#串口的实现" class="headerlink" title="串口的实现"></a>串口的实现</h2><p>在实现无线数据之间的信息交流时，首先应该先实现串口功能。  </p>
+<h2 id="串口的实现"><a href="#串口的实现" class="headerlink" title="串口的实现"></a>串口的实现</h2><p>在实现无线数据之间的信息交流时，首先应该先实现串口功能。</p>
 <h3 id="资料和软件"><a href="#资料和软件" class="headerlink" title="资料和软件"></a>资料和软件</h3><ol>
 <li>软件：Stm32CubeMx ,keilMDK</li>
 <li>芯片：stm32f103RE</li>
-<li>资料：STM32F10x参考手册 <h3 id="STM32中USART介绍"><a href="#STM32中USART介绍" class="headerlink" title="STM32中USART介绍"></a>STM32中USART介绍</h3><blockquote>
+<li>资料：STM32F10x参考手册  </li>
+</ol>
+<h3 id="STM32中USART介绍"><a href="#STM32中USART介绍" class="headerlink" title="STM32中USART介绍"></a>STM32中USART介绍</h3><blockquote>
 <p>STM32芯片具有多个 USART 外设用于串口通讯，它是 Universal Synchronous<br>Asynchronous Receiver and Transmitter的缩写，即通用同步异步收发器可以灵活地与外部设<br>备进行全双工数据交换。有别于 USART，它还有具有 UART 外设(Universal Asynchronous<br>Receiver and Transmitter)，它是在 USART基础上裁剪掉了同步通信功能，只有异步通信。<br>简单区分同步和异步就是看通信时需不需要对外提供时钟输出，我们平时用的串口通信基<br>本都是 UART。   </p>
 </blockquote>
-<h3 id="USART初始化"><a href="#USART初始化" class="headerlink" title="USART初始化"></a>USART初始化</h3>在学习Stm32CubeMx，HAL库版本时，首先应该了解Stm32寄存器版本。简单来说，HAL库其实就是对Stm32寄存器的封装。<br>下方链接是对串口知识的讲解：  </li>
+<h3 id="USART初始化"><a href="#USART初始化" class="headerlink" title="USART初始化"></a>USART初始化</h3><p>在学习Stm32CubeMx，HAL库版本时，首先应该了解Stm32寄存器版本。简单来说，HAL库其实就是对Stm32寄存器的封装。<br>下方链接是对串口知识的讲解：</p>
+<ol>
+<li><a href="https://blog.csdn.net/qq_38410730/article/details/79887200" target="_blank" rel="noopener">串口通信基本原理</a>  </li>
+<li><a href="https://blog.csdn.net/qq_38410730/article/details/79897008" target="_blank" rel="noopener">【STM32】串口相关配置寄存器、库函数（UART一般步骤）</a>    </li>
 </ol>
-<p><a href="https://blog.csdn.net/qq_38410730/article/details/79887200" target="_blank" rel="noopener">串口通信基本原理</a><br><a href="https://blog.csdn.net/qq_38410730/article/details/79897008" target="_blank" rel="noopener">【STM32】串口相关配置寄存器、库函数（UART一般步骤）</a></p>
-<p>在寄存器版本中实现串口功能，有以及几个步骤：    </p>
+<p>在寄存器版本中实现串口功能，有以及几个步骤：</p>
 <ol>
 <li>RX和TX引脚GPIO时钟和USART时钟；</li>
 <li>初始化GPIO口，并将GPIO复用到USART上；</li>
@@ -656,10 +660,10 @@ else
 {
  return HAL_BUSY;
 }
-}</code></pre><p>这里可以看到，当数据接收完成，使用函数HAL_UART_RxCpltCallback(huart)。当进入这个函数时可以看到__weak,表示如果自己定义了同名的函数就不用他，如果你没定义就使用这个弱函数。<br>到了这里才将这个工程文件理解。接下来就来写代码实现串口的接收与发送。  </p>
-<h3 id="实现串口接收与发送"><a href="#实现串口接收与发送" class="headerlink" title="实现串口接收与发送"></a>实现串口接收与发送</h3><p>在实现串口接收与发送，需要使用两个函数：</p>
+}</code></pre><p>这里可以看到，当数据接收完成，使用函数HAL_UART_RxCpltCallback(huart)。当进入这个函数时可以看到__weak,表示如果自己定义了同名的函数就不用他，如果你没定义就使用这个弱函数。<br>到了这里才将这个工程文件理解。接下来就来写代码实现串口的接收与发送。   </p>
 </li>
 </ol>
+<h3 id="实现串口接收与发送"><a href="#实现串口接收与发送" class="headerlink" title="实现串口接收与发送"></a>实现串口接收与发送</h3><p>在实现串口接收与发送，需要使用两个函数：</p>
 <ul>
 <li>HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size); 串口中断模式发送  </li>
 <li>HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);串口中断模式接收  </li>
@@ -703,7 +707,7 @@ else
   {
     return HAL_BUSY;
   }
-}</code></pre><p>这里可以看出该函数会开启接收中断并且设置接收缓冲以及接收缓冲接收最大数据量。函数HAL_UART_Transmit_IT();与HAL_UART_Receive_IT();因此不一一介绍了。<br>接下来将这些代码加入main.c文件中（图3-1）进行编译：  </p>
+}</code></pre><p>这里可以看出该函数会开启接收中断并且设置接收缓冲以及接收缓冲接收最大数据量。函数HAL_UART_Transmit_IT();与HAL_UART_Receive_IT()相似;因此不一一介绍了。<br>接下来将这些代码加入main.c文件中（图3-1）进行编译：  </p>
 <pre><code>uint8_t aRxBuffer;
  HAL_UART_Receive_IT(&amp;huart1,&amp;aRxBuffer,1);
  void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
