@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>基于stm32f103任意发送字符串-中级</title>
+      <link href="/posts/1076104799/"/>
+      <url>/posts/1076104799/</url>
+      
+        <content type="html"><![CDATA[<h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>本文主要是实现串口助手发送任意字符串，在屏幕上接收到相同的字符串。  </p><h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><ol><li>软件: stm32cubemx ,keilMDK，Configure Virtual Serial Port Driver，串口助手</li><li>硬件：stm32f103开发版</li><li>资料：stm32f103中文参考手册   </li></ol><h2 id="实验现象"><a href="#实验现象" class="headerlink" title="实验现象"></a>实验现象</h2><p><img src="/posts/1076104799/1587300299471.gif" alt="实验现象">   </p><h2 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h2><h3 id="硬件引脚"><a href="#硬件引脚" class="headerlink" title="硬件引脚"></a>硬件引脚</h3><p>如图表1-1所示，为stm32f103vet6芯片USART中TX,RX的引脚。本文使用ABP2总线中的USART1串口实现串口接收发送任意字符串。   </p><table><thead><tr><th>引脚</th><th>ABP2总线</th><th></th><th>ABP1总线</th><th></th><th></th></tr></thead><tbody><tr><td></td><td>USART1</td><td>USART2</td><td>USART3</td><td>UART4</td><td>UART5</td></tr><tr><td>TX</td><td>PA9</td><td>PA2</td><td>PB10</td><td>PC10</td><td>PC12</td></tr><tr><td>RX</td><td>PA10</td><td>PA3</td><td>PB11</td><td>PC11</td><td>PD2</td></tr></tbody></table><h3 id="软件设计"><a href="#软件设计" class="headerlink" title="软件设计"></a>软件设计</h3><h4 id="UASRT初始化"><a href="#UASRT初始化" class="headerlink" title="UASRT初始化"></a>UASRT初始化</h4><p>UASRT初始化就不介绍了，可以在本博客<a href="https://pan_su_wan.gitee.io/posts/34449/">基于stm32cubemx实现串口接收与发送-基础</a>进行学习。  </p><h4 id="接收发送任意字符串"><a href="#接收发送任意字符串" class="headerlink" title="接收发送任意字符串"></a>接收发送任意字符串</h4><h5 id="1-基础"><a href="#1-基础" class="headerlink" title="1.基础"></a>1.基础</h5><p>接收发送任意字符串中，本文使用的是中断函数。在基础篇中，可以知道，当进入中断函数时，函数调用的是HAL_UART_IRQHandler(&amp;huart1); 这个函数，并且最终在HAL_UART_RxCpltCallback(huart);这个回调函数中进行编写，实现一些功能。由于这些函数都是HAL库中的函数，在接收发送过程中固定的字符个数，无法接收发送任意字符个数。那我们该如何实现接收发送任意个数的字符。<br>首先我们可以看参考手册中数据寄存器(USART_DR)一次接收发送时是什么样的。如图1-2所示：<br><img src="/posts/1076104799/20200419183952.png" alt="图1-2数据寄存器(USART_DR)"><br>从图中可以看出数据寄存器每次只能接收和发送9位，而一个字符为8位，因此串口每次接收和发送一个字符。那我们该如何实现接收和发送无限制字符串。其实可以这样。每当接收一个字符我们就把这个字符发送出去，这样就可以接收和发送任意字符串。在中断服务函数中，我们可以不用调用HAL_UART_IRQHandler函数，而是直接编写自己的中断函数。下面就是我写的中断函数内容：</p><pre><code>void USART1_IRQHandler(void){  uint8_t ch; if (__HAL_UART_GET_FLAG( &amp;UartHandle, UART_FLAG_RXNE ) != RESET)//获取接收中断事件标志  {    ch=( uint16_t)READ_REG(UartHandle.Instance-&gt;DR);//接收字符    WRITE_REG ( UartHandle.Instance-&gt;DR,ch);//发送字符  }}</code></pre><p>为什么要这样写，我们可以和51单片机相比较，当51单片机接收一个字符是，RI=1,和__HAL_UART_GET_FLAG( &amp;UartHandle, UART_FLAG_RXNE ) != RESET相当于一个意思。在51单片机中ch=SBUF,表示将接收到的字符放入ch里，类似于我们这ch=( uint16_t)READ_REG(UartHandle.Instance-&gt;DR)这个语句。那么WRITE_REG ( UartHandle.Instance-&gt;DR,ch);也就是发送字符。<br>这里问题来了，为什么在51单片机中，RI要软件清零，而这里不需要。这里我们就需要看芯片的参考手册了。如图1-3所示，在参考手册状态寄存器(USART_SR)中可以找到这个。<br><img src="/posts/1076104799/20200419193913.png" alt="图1-3RXNE"><br>这里我们可以读到对USART_DR的读操作可以将该位清零。因此可以不需要和51单片机中RI需要软件清零。<br>当然，在初始化中要打开接收中断使能，否在串口中断无法进入。</p><pre><code> __HAL_UART_ENABLE_IT(&amp;huart1,UART_IT_RXNE);//接收中断使能</code></pre><p>这样就实现了串口任意接收和发送字符串了。</p><h5 id="2-提升"><a href="#2-提升" class="headerlink" title="2. 提升"></a>2. 提升</h5><p> 上面的代码中就是单纯的接收和发送任意字符串。如果我们需要发送一个字符串来控制单片机的某个东西，而且单片机还要发送一串字符，表示已经执行的我们所需要控制的的东西，那我们该怎么办。其实学我们专业都见过这样一个东西，计算机中dos,当我们写入某个指令，按回车就能反馈看的东西。在这里我们也可以用这个方式来实现这个功能。<br> 步骤如下：</p><ol><li><p>接收字符</p></li><li><p>判断字符是否为’\n’</p></li><li><p>为字符’\n’flag标志置1，关闭串口中断进行发送字符</p></li><li><p>flag置0，打开接收中断使能<br>将stm32f1xx_it.c文件中USART1_IRQHandler(void)放入main.c文件下，在中断函数中代码如下：</p><pre><code>void USART1_IRQHandler(void){//HAL_UART_IRQHandler(&amp;huart1);uint8_t ch ;if(__HAL_UART_GET_FLAG( &amp;huart1, UART_FLAG_RXNE ) != RESET){  ch=( uint16_t)READ_REG(huart1.Instance-&gt;DR);  USART_RX_BUF[USART_RX_STA&amp;0X3FFF]=ch;//接收到的字符保存在 USART_RX_BUF 数组中  if(USART_RX_BUF[USART_RX_STA] == 0X0A &amp;&amp; USART_RX_BUF[USART_RX_STA-1] == 0X0D)//判断是否为&#39;\n&#39;    {      flag = 1;  //置1      __HAL_UART_DISABLE_IT(&amp;huart1, UART_IT_RXNE);//关闭接收中断    }  USART_RX_STA++; //计数接收到的字符的个数}}</code></pre><p>USART_RX_BUF数组和USART_RX_STA为全局变量，上面代码中我们将接收到的字符放入USART_RX_BUF数组中，一旦检测到数组中有’\n’时，flag置1，关闭中断。<br>然后在main.c 里while(1)中加入下面代码：</p><pre><code>while (1){/* USER CODE END WHILE */ if(flag) //如果flag为1     {         flag = 0;//flag为0         HAL_UART_Transmit(&amp;huart1,USART_RX_BUF,USART_RX_STA,1000);发送字符，查询方式         for(uint16_t i = 0; i&lt;USART_RX_STA; i++) //清空数组         {             USART_RX_BUF[i] = 0;         }         USART_RX_STA = 0; 计数为0         __HAL_UART_ENABLE_IT(&amp;huart1,UART_IT_RXNE);//打开接收中断     }/* USER CODE BEGIN 3 */}/* USER CODE END 3 */}</code></pre><p>在这段代码中表示当flag=1时，将接收到的字符发送出去，然后清空数组，计数为0最后在打开中断。当然，也可以在里面判断接收的字符串，然后发送自己想看的字符串。  </p><h4 id="代码的位置"><a href="#代码的位置" class="headerlink" title="代码的位置"></a>代码的位置</h4><p>代码的位置在main.c文件中，如图1-4,图1-5，图1-6所示：<br><img src="/posts/1076104799/20200419203549.png" alt="图1-4全区变量"><br><img src="/posts/1076104799/20200419203549.png" alt="图1-5串口中断函数"><br><img src="/posts/1076104799/20200419203634.png" alt="图1-6发送配置"></p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> STM32CubeMx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> STM32 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>基于stm32cubemx实现串口接收与发送-基础</title>
       <link href="/posts/34449/"/>
       <url>/posts/34449/</url>
