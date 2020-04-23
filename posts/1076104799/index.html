@@ -527,14 +527,14 @@
 </tr>
 </tbody></table>
 <h3 id="软件设计"><a href="#软件设计" class="headerlink" title="软件设计"></a>软件设计</h3><h4 id="UASRT初始化"><a href="#UASRT初始化" class="headerlink" title="UASRT初始化"></a>UASRT初始化</h4><p>UASRT初始化就不介绍了，可以在本博客<a href="https://pan_su_wan.gitee.io/posts/34449/">基于stm32cubemx实现串口接收与发送-基础</a>进行学习。  </p>
-<h4 id="接收发送任意字符串"><a href="#接收发送任意字符串" class="headerlink" title="接收发送任意字符串"></a>接收发送任意字符串</h4><h5 id="1-基础"><a href="#1-基础" class="headerlink" title="1.基础"></a>1.基础</h5><p>接收发送任意字符串中，本文使用的是中断函数。在基础篇中，可以知道，当进入中断函数时，函数调用的是HAL_UART_IRQHandler(&amp;huart1); 这个函数，并且最终在HAL_UART_RxCpltCallback(huart);这个回调函数中进行编写，实现一些功能。由于这些函数都是HAL库中的函数，在接收发送过程中固定的字符个数，无法接收发送任意字符个数。那我们该如何实现接收发送任意个数的字符。<br>首先我们可以看参考手册中数据寄存器(USART_DR)一次接收发送时是什么样的。如图1-2所示：<br><img src="/posts/1076104799/20200419183952.png" alt="图1-2数据寄存器(USART_DR)"><br>从图中可以看出数据寄存器每次只能接收和发送9位，而一个字符为8位，因此串口每次接收和发送一个字符。那我们该如何实现接收和发送无限制字符串。其实可以这样。每当接收一个字符我们就把这个字符发送出去，这样就可以接收和发送任意字符串。在中断服务函数中，我们可以不用调用HAL_UART_IRQHandler函数，而是直接编写自己的中断函数。下面就是我写的中断函数内容：</p>
+<h4 id="回显任意字符串"><a href="#回显任意字符串" class="headerlink" title="回显任意字符串"></a>回显任意字符串</h4><h5 id="1-基础"><a href="#1-基础" class="headerlink" title="1.基础"></a>1.基础</h5><p>接收发送任意字符串中，本文使用的是中断函数。在基础篇中，可以知道，当进入中断函数时，函数调用的是HAL_UART_IRQHandler(&amp;huart1); 这个函数，并且最终在HAL_UART_RxCpltCallback(huart);这个回调函数中进行编写，实现一些功能。由于这些函数都是HAL库中的函数，在接收发送过程中固定的字符个数，无法接收发送任意字符个数。那我们该如何实现接收发送任意个数的字符。<br>首先我们可以看参考手册中数据寄存器(USART_DR)一次接收发送时是什么样的。如图1-2所示：<br><img src="/posts/1076104799/20200419183952.png" alt="图1-2数据寄存器(USART_DR)"><br>从图中可以看出数据寄存器每次只能接收和发送9位，而一个字符为8位，因此串口每次接收和发送一个字符。那我们该如何实现接收和发送无限制字符串。其实可以这样。每当接收一个字符我们就把这个字符发送出去，这样就可以接收和发送任意字符串。在中断服务函数中，我们可以不用调用HAL_UART_IRQHandler函数，而是直接编写自己的中断函数。下面就是我写的中断函数内容：</p>
 <pre><code>void USART1_IRQHandler(void)
 {
   uint8_t ch;
- if (__HAL_UART_GET_FLAG( &amp;UartHandle, UART_FLAG_RXNE ) != RESET)//获取接收中断事件标志
+ if (__HAL_UART_GET_FLAG( &amp;huart1, UART_FLAG_RXNE ) != RESET)//获取接收中断事件标志
   {
-    ch=( uint16_t)READ_REG(UartHandle.Instance-&gt;DR);//接收字符
-    WRITE_REG ( UartHandle.Instance-&gt;DR,ch);//发送字符
+    ch=( uint16_t)READ_REG(huart1.Instance-&gt;DR);//接收字符
+    WRITE_REG ( huart1.Instance-&gt;DR,ch);//发送字符
   }
 }</code></pre><p>为什么要这样写，我们可以和51单片机相比较，当51单片机接收一个字符是，RI=1,和__HAL_UART_GET_FLAG( &amp;UartHandle, UART_FLAG_RXNE ) != RESET相当于一个意思。在51单片机中ch=SBUF,表示将接收到的字符放入ch里，类似于我们这ch=( uint16_t)READ_REG(UartHandle.Instance-&gt;DR)这个语句。那么WRITE_REG ( UartHandle.Instance-&gt;DR,ch);也就是发送字符。<br>这里问题来了，为什么在51单片机中，RI要软件清零，而这里不需要。这里我们就需要看芯片的参考手册了。如图1-3所示，在参考手册状态寄存器(USART_SR)中可以找到这个。<br><img src="/posts/1076104799/20200419193913.png" alt="图1-3RXNE"><br>这里我们可以读到对USART_DR的读操作可以将该位清零。因此可以不需要和51单片机中RI需要软件清零。<br>当然，在初始化中要打开接收中断使能，否在串口中断无法进入。</p>
 <pre><code> __HAL_UART_ENABLE_IT(&amp;huart1,UART_IT_RXNE);//接收中断使能</code></pre><p>这样就实现了串口任意接收和发送字符串了。</p>
@@ -843,51 +843,49 @@ if(__HAL_UART_GET_FLAG( &amp;huart1, UART_FLAG_RXNE ) != RESET)
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/1076104799/">
+                <a href="/posts/1626806820/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="基于stm32f103任意发送字符串-中级">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="基于串口接收——keil图形化仿真">
                         
-                        <span class="card-title">基于stm32f103任意发送字符串-中级</span>
+                        <span class="card-title">基于串口接收——keil图形化仿真</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            实验目的本文主要是实现串口助手发送任意字符串，在屏幕上接收到相同的字符串。  
-实验环境
-软件: stm32cubemx ,keilMDK，Configure Virtual Serial Port Driver，串口助手
-硬件：stm32
+                            实验目的将串口助手收到字符用图形化显示出来。
+实验资料
+keilMDK，Configure Virtual Serial Port Driver，串口助手
+硬件：stm32f103开发版实验现象实验步骤Logic Analyzer 介绍在k
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-19
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-23
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/STM32CubeMx/" class="post-category">
-                                    STM32CubeMx
+                            <a href="/categories/%E9%9A%8F%E7%AC%94/" class="post-category">
+                                    随笔
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/STM32/">
-                        <span class="chip bg-color">STM32</span>
+                    <a href="/tags/%E9%9A%8F%E7%AC%94/">
+                        <span class="chip bg-color">随笔</span>
                     </a>
                     
                 </div>
