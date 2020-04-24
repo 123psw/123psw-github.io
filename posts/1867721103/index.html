@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="基于串口接收——keil图形化仿真, 平湖烟雨">
+    <meta name="keywords" content="基于Matlab中数据拟合实现红外传感器值与距离的关系, 平湖烟雨">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -15,7 +15,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>基于串口接收——keil图形化仿真 | 平湖烟雨</title>
+    <title>基于Matlab中数据拟合实现红外传感器值与距离的关系 | 平湖烟雨</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -305,12 +305,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">基于串口接收——keil图形化仿真</h1>
+                    <h1 class="description center-align post-title">基于Matlab中数据拟合实现红外传感器值与距离的关系</h1>
                 </div>
             </div>
         </div>
@@ -435,8 +435,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E9%9A%8F%E7%AC%94/">
-                                <span class="chip bg-color">随笔</span>
+                            <a href="/tags/Matlab/">
+                                <span class="chip bg-color">Matlab</span>
                             </a>
                         
                     </div>
@@ -447,8 +447,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E9%9A%8F%E7%AC%94/" class="post-category">
-                                随笔
+                            <a href="/categories/Matlab/" class="post-category">
+                                Matlab
                             </a>
                         
                     </div>
@@ -460,7 +460,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-23
+                    2020-04-22
                 </div>
                 
 
@@ -469,7 +469,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    333
+                    1.6k
                 </div>
                 
 
@@ -482,15 +482,50 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>将串口助手收到字符用图形化显示出来。</p>
-<h2 id="实验资料"><a href="#实验资料" class="headerlink" title="实验资料"></a>实验资料</h2><ol>
-<li>keilMDK，Configure Virtual Serial Port Driver，串口助手</li>
-<li>硬件：stm32f103开发版<h2 id="实验现象"><a href="#实验现象" class="headerlink" title="实验现象"></a>实验现象</h2><img src="/posts/1626806820/1587633517176.gif" alt="图1-1实验现象"><h2 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h2><h3 id="Logic-Analyzer-介绍"><a href="#Logic-Analyzer-介绍" class="headerlink" title="Logic Analyzer 介绍"></a>Logic Analyzer 介绍</h3>在keil中软件逻辑分析仪（logic analyzer）很强的功能，可以分析数字信号，模拟化的信号，CPU的总线(UART、IIC等一切有输出的管脚)，提供调试函数机制。本文使用Logic Analyzer实现将接收到的字符用图形化显示出来。  <h3 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a>操作方法</h3></li>
-<li>如图2-1所示，点击Options for Target…出现窗口，接下来点击Target,在Xtal(MHz)配置仿真时时钟的大小。<br><img src="/posts/1626806820/20200423160012.png" alt="图2-1Target窗口配置"></li>
-<li>如图2-2所示，点击Debug窗口，选择Use Simulator和Limit Speed to Real-Time实现软件仿真，最后点击OK。<br><img src="/posts/1626806820/20200423160003.png" alt="图2-2Debug窗口配置"></li>
-<li>如图2-3所示，点击Start/Stop Debug Session进入仿真模式，然后选择Logic Analyzer,在Logic Analyzer窗口下点击Setup…添加所需仿真的变量（图2-4对Setup的设置），最后点击Run运行代码。<br><img src="/posts/1626806820/20200423160139.png" alt="图2-3选择Logic Analyzer)"></li>
-<li>如图2-4所示，点击New(Insert)，添加所需仿真的变量。本文是实现将串口助手收到字符用图形化显示出来，因此将ch变量添加进去。<br><img src="/posts/1626806820/20200423160103.png" alt="图2-4Setup的设置)"><h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3>Logic Analyzer添加所需仿真变量必须是全局变量，否在无法添加。</li>
+                <h2 id="什么是数据拟合"><a href="#什么是数据拟合" class="headerlink" title="什么是数据拟合"></a>什么是数据拟合</h2><blockquote>
+<p>数据拟合又称曲线拟合，俗称拉曲线，是一种把现有数据透过数学方法来代入一条数式的表示方式。科学和工程问题可以通过诸如采样、实验等方法获得若干离散的数据，根据这些数据，我们往往希望得到一个连续的函数（也就是曲线）或者更加密集的离散方程与已知数据相吻合，这过程就叫做拟合(fitting)。   </p>
+</blockquote>
+<p>举个简单拿到例子，函数y=x（x属于R）;每一个x的值都有一个y值。假设需要采样某个器件在不同种条件下得到不同种的值，就好比在自变量x下得到得到应变量y。当无法采样时，该如何，这个时候就在这些数据中找规律。一旦规律找出来，就可以在无法采样时找到这个值。当然，这个时候这个值并不准确，当采样的数据越多，那么在曲线规律下值就越准确，这样在曲线规律预测的这个值就更加精确实际测量到的值，这就是数据拟合。</p>
+<h2 id="数据拟合的意义"><a href="#数据拟合的意义" class="headerlink" title="数据拟合的意义"></a>数据拟合的意义</h2><p>数据拟合在很多地方都有着重大意义。比如预测，估算。总的来说有以下两点：  </p>
+<ol>
+<li><p>总结事件发生的规律</p>
+</li>
+<li><p>规律属于何种<br>本文数据拟合的意义在于实现智能小车在墙迷宫走迷宫时，将传感器接收到的数据经过数据拟合得到墙壁与传感器的距离进行判断实现循迹和判断迷宫路口，那么首先应该实现红外传感器接收到的值和距离进行数据拟合。  </p>
+<h2 id="传感器值与距离的数据拟合"><a href="#传感器值与距离的数据拟合" class="headerlink" title="传感器值与距离的数据拟合"></a>传感器值与距离的数据拟合</h2><h3 id="红外线传感器工作原理"><a href="#红外线传感器工作原理" class="headerlink" title="红外线传感器工作原理"></a>红外线传感器工作原理</h3><p>首先，实现传感器值与距离的数据拟合是为了CPU读取了传感器的值，从而知道自己所在的位置，以便于CPU准确的做出下一步指令。传感器的值是如何获取的呢？这里大致解释一下红外线的工作原理。<br>红外线由两部分构成，接收管和发射管。发射管接通电源后，发射红外线。当障碍物的位置不同，反射的红外线大小也不同，当然障碍物的颜色也对红外线反射有影响。反射的红外线将会被传感器的接收管检测到。而接收管类似于变阻器，不过电阻的大小由反射红外线大小控制；而电阻的大小我们不能检测到，但可以检测到接收管的电压。因此看电压的大小可以知道反射红外线的大小。。当然如果没有障碍物时，接收管就无法接收到反射的红外线。  </p>
+<h3 id="红外传感器函数公式"><a href="#红外传感器函数公式" class="headerlink" title="红外传感器函数公式"></a>红外传感器函数公式</h3><p>红外传感器有一个函数公式，logv = clogr + d。这里的公式本文不做解释，后期向大家介绍。</p>
+<h3 id="最小二乘法"><a href="#最小二乘法" class="headerlink" title="最小二乘法"></a>最小二乘法</h3><p>本文使用最小二乘法求出c,d的值。那么什么是最小二乘法？    </p>
+<blockquote>
+<p>最小二乘法，是一种数学优化方法。它通过最小化误差的平方和寻找数据的最佳函数匹配。利用最小二乘法可以简便的求得未知的数据，并使得求得的数据与实际数据之间误差的平方和为最小。  </p>
+</blockquote>
+<h3 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h3><h4 id="从函数微积分角度："><a href="#从函数微积分角度：" class="headerlink" title="从函数微积分角度："></a>从函数微积分角度：</h4><p>假设某次实验得到了四个数据点(x, y)：(1,6)、(2,5)、(3,7)、(4,10)，我们希望找出一条和这四个点最匹配的直线 y=a+bx，即找出在某种“最佳情况”下能够大致符合如下超定线性方程组的a和b:<br>a + 1b = 6;<br>a + 2b = 5;<br>a + 3b = 7;<br>a + 4b = 10;<br>最小二乘法就是求出(6-(a + 1b))^2+((5-(a + 2b))^2+(7-(a + 3b))^2+(10-(a + 4b))的最小值。那我们就设最小值为z,则：<br>z=(6-(a + 1b))^2+((5-(a + 2b))^2+(7-(a + 3b))^2+(10-(a + 4b));<br>因为平方了，因此z恒大于等于0。同时可以知道，z是不可能达到最大值的（只要足够偏离的话，那肯定是越来越大的）,  我们可以看图，如图1-1所示，当蓝色的线上下移动旋转，绿色只有最小值，没有最大值。<br><img src="/posts/1867721103/20200423204149.png" alt="图1-1"><br>那该如何求z呢？一种就是找出a与b的等式替换其中一个。这个不仅麻烦，而且在这里找不到a和b的等式。第二种方式就是通过对z分别求a和b的偏导数，然后使他们等于零得到。<br>0 = 8a + 20b - 56；<br>0 = 20a + 60b - 154；<br>两者联立求出a = 3.5 , b = 1.4，得出最匹配的直线为 y = 3.5 + 1.4x。<br>为什么要等于零。z是一个多元函数，从几何上看，z是一个曲面，由于z恒大于等于零，z类似于如图1-2所示的曲面图。而在数学中，一个多变量的函数的偏导数（英语：partial derivative）是它关于其中一个变量的导数，而保持其他变量恒定。因此两个偏导数要同时等于0才能求出z最小值。<br><img src="/posts/1867721103/20200424200746.png" alt="图1-2z=x^2+y^2曲面图一部分"> </p>
+<h4 id="从线性代数角度："><a href="#从线性代数角度：" class="headerlink" title="从线性代数角度："></a>从线性代数角度：</h4><p>这边就不介绍了，下面是这方面的资料和视频：</p>
+<ol>
+<li><a href="https://www.bilibili.com/video/BV1n7411s7Zq?from=search&seid=15674045717352792455" target="_blank" rel="noopener">最小二乘法的线性代数证明</a></li>
+<li><a href="https://baike.baidu.com/item/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95" target="_blank" rel="noopener">最小二乘法——百度百科</a><br>最终我们可以知道最小二乘法公式为：<br><img src="/posts/1867721103/20200424173915.png" alt> </li>
 </ol>
+</li>
+</ol>
+<h4 id="实验测量值"><a href="#实验测量值" class="headerlink" title="实验测量值"></a>实验测量值</h4><p>距离|3|4|5|6|7|8|9|10|11|12|13|14<br>-|-|-|-|-|-|-|-|-|-|-|-|-|-<br>电压值|2.7|1.8|1.3|1|0.74|0.58|0.47|0.38|0.33|0.28|0.24|0.2<br>矩阵形式为：  </p>
+<p><img src="/posts/1867721103/20200424173513.png" alt="图1-2z=x^2+y^2曲面图一部分"> </p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>下面的代码就是使用最小二乘法求出从从c,d：   </p>
+<pre><code>% 定义域 r1
+r1 = 3:14;a
+% 区间 v
+vo1 = [2.7 1.8 1.3 1 0.74 0.58 0.47 0.38 0.33 0.28 0.24 0.2];
+% r1的矩阵
+A1 = [log10(r1);ones(1,12)]&#39;;
+% v1的矩阵
+v1 = log10(vo1);
+% v = c*log10(r) + d  ,c,d值
+ans_cd1 = inv(A1&#39;*A1)*A1&#39;*v1&#39;;
+fprintf(&#39;ans_cd1 = %g\n&#39;,ans_cd1);</code></pre><p>最后用matlab将图形表示出来：  </p>
+<pre><code>x = 3:0.01:14;
+y = 10.^(-1.70104*log10(x)+1.28584);
+plot(r1,vo1 ,&#39;green-o&#39;,x,y,&#39;r&#39;);
+xlabel(&#39;距离&#39;);
+ylabel(&#39;电压值&#39;);
+title(&#39;红色线为最小二乘法拟合，绿色线为实际测量值&#39;);  
+grid on</code></pre><p>图3-1为红外线传感器值与距离的数据拟合图。<br><img src="/posts/1867721103/20200424123840.png" alt="图1-2z=x^2+y^2曲面图一部分"> </p>
 
             </div>
             <hr/>
@@ -516,7 +551,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://pan_su_wan.gitee.io/posts/1626806820/">https://pan_su_wan.gitee.io/posts/1626806820/</a>
+                    <a href="https://pan_su_wan.gitee.io/posts/1867721103/">https://pan_su_wan.gitee.io/posts/1867721103/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -554,8 +589,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E9%9A%8F%E7%AC%94/">
-                                    <span class="chip bg-color">随笔</span>
+                                <a href="/tags/Matlab/">
+                                    <span class="chip bg-color">Matlab</span>
                                 </a>
                             
                         </div>
@@ -726,7 +761,7 @@
         repo: '123psw.github.io',
         owner: '123psw',
         admin: "123psw",
-        id: '2020-04-23T08-26-20',
+        id: '2020-04-22T12-20-24',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -750,10 +785,9 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
                 <a href="/posts/1626806820/">
                     <div class="card-image">
@@ -774,9 +808,9 @@ keilMDK，Configure Virtual Serial Port Driver，串口助手
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-23
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-23
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -789,7 +823,6 @@ keilMDK，Configure Virtual Serial Port Driver，串口助手
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -808,32 +841,34 @@ keilMDK，Configure Virtual Serial Port Driver，串口助手
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/1867721103/">
+                <a href="/posts/1076104799/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="基于Matlab中数据拟合实现红外传感器值与距离的关系">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="基于stm32f103任意发送字符串-中级">
                         
-                        <span class="card-title">基于Matlab中数据拟合实现红外传感器值与距离的关系</span>
+                        <span class="card-title">基于stm32f103任意发送字符串-中级</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            什么是数据拟合
-数据拟合又称曲线拟合，俗称拉曲线，是一种把现有数据透过数学方法来代入一条数式的表示方式。科学和工程问题可以通过诸如采样、实验等方法获得若干离散的数据，根据这些数据，我们往往希望得到一个连续的函数（也就是曲线）或者更加密集的离
+                            实验目的本文主要是实现串口助手发送任意字符串，在屏幕上接收到相同的字符串。  
+实验环境
+软件: stm32cubemx ,keilMDK，Configure Virtual Serial Port Driver，串口助手
+硬件：stm32
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-22
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-19
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Matlab/" class="post-category">
-                                    Matlab
+                            <a href="/categories/STM32CubeMx/" class="post-category">
+                                    STM32CubeMx
                                 </a>
                             
                             
@@ -843,8 +878,8 @@ keilMDK，Configure Virtual Serial Port Driver，串口助手
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Matlab/">
-                        <span class="chip bg-color">Matlab</span>
+                    <a href="/tags/STM32/">
+                        <span class="chip bg-color">STM32</span>
                     </a>
                     
                 </div>
