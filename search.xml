@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>串口可视化</title>
+      <link href="/posts/1642934042/"/>
+      <url>/posts/1642934042/</url>
+      
+        <content type="html"><![CDATA[<h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>实现串口接收数据可视化。</p><h2 id="实验材料"><a href="#实验材料" class="headerlink" title="实验材料"></a>实验材料</h2><p>软件：多功能串行口调试助手<br>硬件：stm32103开发板</p><h2 id="实验现象"><a href="#实验现象" class="headerlink" title="实验现象"></a>实验现象</h2><p><img src="/posts/1642934042/1587898892163.gif" alt="串口可视化"></p><h2 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h2><p>本文使用<a href="https://pan_su_wan.gitee.io/posts/1076104799/">基于stm32f103任意发送字符串-中级</a>中的代码，实现串口接收数据可视化。</p><ol><li>将开发板插入电脑。</li><li>如图2-1所示，打开多功能串行口调试助手，进行串口参数配置，然后打开串口。<br><img src="/posts/1642934042/20200426181613.png" alt="图2-1多功能串行口调试助手"></li><li>如图3-1所示，勾线曲线绘制使能。<br><img src="/posts/1642934042/20200426181636.png" alt="图2-1曲线绘制使能"></li><li>发送字节。</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随笔 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>基于串口接收——keil图形化仿真</title>
       <link href="/posts/1626806820/"/>
       <url>/posts/1626806820/</url>
