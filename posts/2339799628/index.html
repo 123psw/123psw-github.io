@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="fritzing软件的使用, 平湖烟雨">
+    <meta name="keywords" content="关于OSE-1L7和TSL262R关系研究, 平湖烟雨">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -15,7 +15,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>fritzing软件的使用 | 平湖烟雨</title>
+    <title>关于OSE-1L7和TSL262R关系研究 | 平湖烟雨</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -305,12 +305,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">fritzing软件的使用</h1>
+                    <h1 class="description center-align post-title">关于OSE-1L7和TSL262R关系研究</h1>
                 </div>
             </div>
         </div>
@@ -435,8 +435,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E9%9A%8F%E7%AC%94/">
-                                <span class="chip bg-color">随笔</span>
+                            <a href="/tags/%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6/">
+                                <span class="chip bg-color">智能小车</span>
                             </a>
                         
                     </div>
@@ -447,8 +447,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E9%9A%8F%E7%AC%94/" class="post-category">
-                                随笔
+                            <a href="/categories/%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6/" class="post-category">
+                                智能小车
                             </a>
                         
                     </div>
@@ -460,7 +460,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-04
+                    2020-05-31
                 </div>
                 
 
@@ -469,7 +469,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    135
+                    560
                 </div>
                 
 
@@ -482,13 +482,13 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="fritzing是什么"><a href="#fritzing是什么" class="headerlink" title="fritzing是什么"></a>fritzing是什么</h2><blockquote>
-<p>Fritzing是一项开放源代码的硬件计划，该计划使电子产品可以作为任何人的创意材料来使用。我们本着Processing和Arduino的精神提供软件工具，社区网站和服务，建立了一个创新的生态系统，允许用户记录其原型，与他人共享它们，在教室里教电子产品以及布置和制造专业的PCB 。</p>
-</blockquote>
-<h2 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h2><p><a href="https://pan.baidu.com/s/131R7wBQ6qd0VQuwU828vmQ" target="_blank" rel="noopener">下载地址</a> 提取码：d9ui</p>
-<h2 id="fritzing的操作"><a href="#fritzing的操作" class="headerlink" title="fritzing的操作"></a>fritzing的操作</h2><iframe height="498" width="786" src="https://player.youku.com/embed/XNDY2MDQ4NTUxNg==" frameborder="0" 'allowfullscreen'></iframe>   
-
-<h2 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h2><p><a href="https://pan.baidu.com/s/1QRlaQsBLWN_R4_dT16vE_w" target="_blank" rel="noopener">驱动资料 </a> 提取码：ropy</p>
+                <h2 id="材料"><a href="#材料" class="headerlink" title="材料"></a>材料</h2><ul>
+<li>stm32F401RET6小刚炮</li>
+<li>OSE-1L7，2SC3325<h2 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h2></li>
+<li>OSE-1L7数据手册</li>
+<li>2SC3325数据手册</li>
+<li>TSL262R数据手册<h2 id="红外线发射接收端电路"><a href="#红外线发射接收端电路" class="headerlink" title="红外线发射接收端电路"></a>红外线发射接收端电路</h2>如图1-1所示，为红外线发射接收端电路。VB为stm32F401RET6的引脚控制端。PS为8.4V的电压。<br><img src="/posts/2339799628/20200531103303.png" alt="图1-1 红外线发射接收端电路图"><br>由于stm32F401RET6的引脚输出电压为3.3V,而VBE的压降约为0.8V所以Ib的计算方式为：<br><img src="/posts/2339799628/20200531104940.png" alt><br>从OSE-1L1数据手册中可以找到额定电压为1.35V，额定电流为100mA,所以Vce电压为：<br>Vce = 8.4V-(5x1.35V) = 1.65V<br>如图1-2所示，当Ib=0.5mA,Vce=1.65V时，IC电流约为90mA,符合OSE-1L1的额定电流。<br><img src="/posts/2339799628/20200531111303.png" alt="图1-1 2SC3325特性图"> <h2 id="OSE-1L7分析"><a href="#OSE-1L7分析" class="headerlink" title="OSE-1L7分析"></a>OSE-1L7分析</h2>从数据手册中可以看到，发出红外线波长集中在940nm(图2-1)，而且在顺向电流50mA时，发射光强度为50mW/sr，同时超过10度以外，发射光的强度相对正前方下降至一半以下(图2-2)。<br><img src="/posts/2339799628/20200531112246.png" alt="图2-1"><br><img src="/posts/2339799628/20200531112254.png" alt="图2-2"><br>从图2-3可以看出超过50mW/sr的用虚线表示，但前面估算出90mA的顺向电流，因此可以估测会有以下的发射量：<br><img src="/posts/2339799628/20200531112831.png" alt><br><img src="/posts/2339799628/20200531113153.png" alt="图2-3"><h2 id="球面度"><a href="#球面度" class="headerlink" title="球面度"></a>球面度</h2><a href="https://baike.baidu.com/item/%E7%90%83%E9%9D%A2%E5%BA%A6" target="_blank" rel="noopener">球面度</a>是一个立体角的计量单位。面积为半径平方(r2)的球表面对球心的张角等于1球面度。因此可以将发射强度为90mW/sr换算为(90/r2)mW/cm2=(90000/r2)uW/cm2。  <h2 id="TSL262R分析"><a href="#TSL262R分析" class="headerlink" title="TSL262R分析"></a>TSL262R分析</h2>TSL262R为红外线接收端，从数据手册中看出可以接收940nm的红外线波长。如图4-1所示，光感测器TSL262R输出电压与接收光能量强度图形，可以写出下列函数公式：<br><img src="/posts/2339799628/20200531121421.png" alt><br><img src="/posts/2339799628/20200531120846.png" alt="图4-1"><br>我们OSE-1L7分析中将(90000/r2)uW/cm2值代入这个函数中可以算出在某一距离下TSL262R输出电压值：<br><img src="/posts/2339799628/20200531122708.png" alt><br>但是由于不同的电路，发射强度不一定时90mW/sr,而且还要一些其他因素。假设输出电压与接收光能量强度的线性关系不会因为这些情况影响。那么我们可以写成下面的公式：<br><img src="/posts/2339799628/20200531123549.png" alt><br>也可以改写为：<br><img src="/posts/2339799628/20200531124154.png" alt><br>其中Z代表着OSE-1L7发射强度以及一些其他影响，r表式距离。那么最终可以写成距离和电压的对数数学公式：<br><img src="/posts/2339799628/20200531124936.png" alt>  </li>
+</ul>
 
             </div>
             <hr/>
@@ -514,7 +514,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://pan_su_wan.gitee.io/posts/3908916139/">https://pan_su_wan.gitee.io/posts/3908916139/</a>
+                    <a href="https://pan_su_wan.gitee.io/posts/2339799628/">https://pan_su_wan.gitee.io/posts/2339799628/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -552,8 +552,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E9%9A%8F%E7%AC%94/">
-                                    <span class="chip bg-color">随笔</span>
+                                <a href="/tags/%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6/">
+                                    <span class="chip bg-color">智能小车</span>
                                 </a>
                             
                         </div>
@@ -724,7 +724,7 @@
         repo: '123psw.github.io',
         owner: '123psw',
         admin: "123psw",
-        id: '2020-05-04T19-23-33',
+        id: '2020-05-31T10-03-51',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -748,9 +748,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/posts/2339799628/">
                     <div class="card-image">
@@ -773,9 +774,9 @@ TSL262R数据手册红外线发射接收端电路如图1-1所示，为红外线�
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-31
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-31
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -788,6 +789,7 @@ TSL262R数据手册红外线发射接收端电路如图1-1所示，为红外线�
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -806,30 +808,25 @@ TSL262R数据手册红外线发射接收端电路如图1-1所示，为红外线�
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/1642934042/">
+                <a href="/posts/3908916139/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="串口数据可视化">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="fritzing软件的使用">
                         
-                        <span class="card-title">串口数据可视化</span>
+                        <span class="card-title">fritzing软件的使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            实验目的实现串口接收数据可视化。
-实验材料软件：多功能串行口调试助手硬件：stm32103开发板
-实验现象
-实验步骤本文使用基于stm32f103任意发送字符串-中级中的代码，实现串口接收数据可视化。
-
-将开发板插入电脑。
-如图2-1所示，
+                            fritzing是什么
+Fritzing是一项开放源代码的硬件计划，该计划使电子产品可以作为任何人的创意材料来使用。我们本着Processing和Arduino的精神提供软件工具，社区网站和服务，建立了一个创新的生态系统，允许用户记录其原型
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-04
                             </span>
                         <span class="publish-author">
                             

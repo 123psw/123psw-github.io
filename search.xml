@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>关于OSE-1L7和TSL262R关系研究</title>
+      <link href="/posts/2339799628/"/>
+      <url>/posts/2339799628/</url>
+      
+        <content type="html"><![CDATA[<h2 id="材料"><a href="#材料" class="headerlink" title="材料"></a>材料</h2><ul><li>stm32F401RET6小刚炮</li><li>OSE-1L7，2SC3325<h2 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h2></li><li>OSE-1L7数据手册</li><li>2SC3325数据手册</li><li>TSL262R数据手册<h2 id="红外线发射接收端电路"><a href="#红外线发射接收端电路" class="headerlink" title="红外线发射接收端电路"></a>红外线发射接收端电路</h2>如图1-1所示，为红外线发射接收端电路。VB为stm32F401RET6的引脚控制端。PS为8.4V的电压。<br><img src="/posts/2339799628/20200531103303.png" alt="图1-1 红外线发射接收端电路图"><br>由于stm32F401RET6的引脚输出电压为3.3V,而VBE的压降约为0.8V所以Ib的计算方式为：<br><img src="/posts/2339799628/20200531104940.png" alt><br>从OSE-1L1数据手册中可以找到额定电压为1.35V，额定电流为100mA,所以Vce电压为：<br>Vce = 8.4V-(5x1.35V) = 1.65V<br>如图1-2所示，当Ib=0.5mA,Vce=1.65V时，IC电流约为90mA,符合OSE-1L1的额定电流。<br><img src="/posts/2339799628/20200531111303.png" alt="图1-1 2SC3325特性图"> <h2 id="OSE-1L7分析"><a href="#OSE-1L7分析" class="headerlink" title="OSE-1L7分析"></a>OSE-1L7分析</h2>从数据手册中可以看到，发出红外线波长集中在940nm(图2-1)，而且在顺向电流50mA时，发射光强度为50mW/sr，同时超过10度以外，发射光的强度相对正前方下降至一半以下(图2-2)。<br><img src="/posts/2339799628/20200531112246.png" alt="图2-1"><br><img src="/posts/2339799628/20200531112254.png" alt="图2-2"><br>从图2-3可以看出超过50mW/sr的用虚线表示，但前面估算出90mA的顺向电流，因此可以估测会有以下的发射量：<br><img src="/posts/2339799628/20200531112831.png" alt><br><img src="/posts/2339799628/20200531113153.png" alt="图2-3"><h2 id="球面度"><a href="#球面度" class="headerlink" title="球面度"></a>球面度</h2><a href="https://baike.baidu.com/item/%E7%90%83%E9%9D%A2%E5%BA%A6" target="_blank" rel="noopener">球面度</a>是一个立体角的计量单位。面积为半径平方(r2)的球表面对球心的张角等于1球面度。因此可以将发射强度为90mW/sr换算为(90/r2)mW/cm2=(90000/r2)uW/cm2。  <h2 id="TSL262R分析"><a href="#TSL262R分析" class="headerlink" title="TSL262R分析"></a>TSL262R分析</h2>TSL262R为红外线接收端，从数据手册中看出可以接收940nm的红外线波长。如图4-1所示，光感测器TSL262R输出电压与接收光能量强度图形，可以写出下列函数公式：<br><img src="/posts/2339799628/20200531121421.png" alt><br><img src="/posts/2339799628/20200531120846.png" alt="图4-1"><br>我们OSE-1L7分析中将(90000/r2)uW/cm2值代入这个函数中可以算出在某一距离下TSL262R输出电压值：<br><img src="/posts/2339799628/20200531122708.png" alt><br>但是由于不同的电路，发射强度不一定时90mW/sr,而且还要一些其他因素。假设输出电压与接收光能量强度的线性关系不会因为这些情况影响。那么我们可以写成下面的公式：<br><img src="/posts/2339799628/20200531123549.png" alt><br>也可以改写为：<br><img src="/posts/2339799628/20200531124154.png" alt><br>其中Z代表着OSE-1L7发射强度以及一些其他影响，r表式距离。那么最终可以写成距离和电压的对数数学公式：<br><img src="/posts/2339799628/20200531124936.png" alt>  </li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 智能小车 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 智能小车 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>fritzing软件的使用</title>
       <link href="/posts/3908916139/"/>
       <url>/posts/3908916139/</url>
