@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="关于智能小车电机的选取, 平湖烟雨">
+    <meta name="keywords" content="基于Cannon小钢炮蓝牙通信添加服务与特性, 平湖烟雨">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -15,7 +15,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>关于智能小车电机的选取 | 平湖烟雨</title>
+    <title>基于Cannon小钢炮蓝牙通信添加服务与特性 | 平湖烟雨</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -305,12 +305,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">关于智能小车电机的选取</h1>
+                    <h1 class="description center-align post-title">基于Cannon小钢炮蓝牙通信添加服务与特性</h1>
                 </div>
             </div>
         </div>
@@ -435,8 +435,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6/">
-                                <span class="chip bg-color">智能小车</span>
+                            <a href="/tags/STM32/">
+                                <span class="chip bg-color">STM32</span>
                             </a>
                         
                     </div>
@@ -447,8 +447,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6/" class="post-category">
-                                智能小车
+                            <a href="/categories/STM32CubeMx/" class="post-category">
+                                STM32CubeMx
                             </a>
                         
                     </div>
@@ -460,7 +460,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-31
+                    2020-12-18
                 </div>
                 
 
@@ -469,7 +469,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    263
+                    2.2k
                 </div>
                 
 
@@ -482,13 +482,177 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id><a href="#" class="headerlink" title></a></h2><h2 id="挑选智能小车的电机"><a href="#挑选智能小车的电机" class="headerlink" title="挑选智能小车的电机"></a>挑选智能小车的电机</h2><h3 id="功以及功率的理解"><a href="#功以及功率的理解" class="headerlink" title="功以及功率的理解"></a>功以及功率的理解</h3><p><a href="https://baike.baidu.com/item/%E5%8A%9F/53648" target="_blank" rel="noopener">功</a>是物理学中表示力对位移的累积的物理量。<br><a href="https://baike.baidu.com/item/%E5%8A%9F%E7%8E%87" target="_blank" rel="noopener">功率</a>是指物体在单位时间内所做的功的多少，即功率是描述做功快慢的物理量。  </p>
-<h3 id="直流伺服马达"><a href="#直流伺服马达" class="headerlink" title="直流伺服马达"></a>直流伺服马达</h3><p>挑选直流伺服马达有以下条件</p>
-<ol>
-<li>计算所需的最大功率</li>
-<li>利用功率需求挑选合适的马达</li>
-<li>利用力矩与速度需求挑选合适的齿轮比<br>假设最大加速度为7m/s2，最大的速度为3m/s,智能小车的重量为0.13kg,那么两个电机的功率为：P=FV=maV=0.13 x 7 x 3 = 2.73W;则一个电机的功率为1.365W。所以最大输出功率必须超过1.365W。假设轮直径为25mm,则F=ma=0.13 X 7 = 0.91N,所以力矩为0.91 X 12.5 / 2  = 5.6875mNm,要让智能小车达到3m/s的速度，马达所需的转速是3000mm/s/(3.14 X 25mm/转)   = 38.2转/s = 2292rpm。 </li>
+                <h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>本文主要目的是添加服务与特性，在BLE Scanner中实现读，写，通知。</p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><ol>
+<li>软件: stm32cubemx ,keilMDK，BLE Scanner, WireShark</li>
+<li>硬件：Cannon小钢炮</li>
+<li>资料：BlueNRG-1、BlueNRG-2 BLE 栈 v2.x 编程指南</li>
 </ol>
+<h2 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h2><h3 id="STM32CubeMx配置"><a href="#STM32CubeMx配置" class="headerlink" title="STM32CubeMx配置"></a>STM32CubeMx配置</h3><iframe height="498" width="800" src="https://player.youku.com/embed/XNTAxNDI3NzUzMg==" frameborder="0" 'allowfullscreen'></iframe>
+
+<h3 id="软件设计"><a href="#软件设计" class="headerlink" title="软件设计"></a>软件设计</h3><h4 id="蓝牙协议栈"><a href="#蓝牙协议栈" class="headerlink" title="蓝牙协议栈"></a>蓝牙协议栈</h4><p>要实现蓝牙之间的通信，首先得知道蓝牙之间如何进行通信的。<br>一般而言，我们把某个协议的实现代码称为协议栈，BLE协议栈就是实现低功耗蓝牙协议的代码，理解和掌握BLE协议是实现BLE协议栈的前提。接下来对BLE协议进行简单介绍。<br>简单来说，BLE协议栈主要用来对应用数据进行层层封包，以生成一个满足BLE协议的空中数据包，也就是说，把应用数据包裹在一系列的帧头（header）和帧尾（tail）中。<br>蓝牙协议规定了两个层次的协议，分别为蓝牙核心协议（Bluetooth Core）和蓝牙应用层协议（Bluetooth Application）。而蓝牙核心协议（Bluetooth Core）又包含BLE Controller和BLE Host两部分。</p>
+<h5 id="BLE低功耗蓝牙核心协议层"><a href="#BLE低功耗蓝牙核心协议层" class="headerlink" title="BLE低功耗蓝牙核心协议层"></a>BLE低功耗蓝牙核心协议层</h5><p>通用访问配置文件层(GAP) ：它定义了设备如何彼此发现，建立连接以及如何实现绑定，同时描述了设备如何成为广播者和观察者，实现无需连接的数据传输，并且定义了如何用不同类型的地址来实现隐私性和可解性。也就是说它定义了一个蓝<br>牙设备所需具备的基本要求。<br>通用属性配置文件层（GATT）：GATT用来规范attribute中的数据内容，并运用group（分组）的概念对attribute进行分类管理。他定义了使用ATT协议的框架，被用于服务，特征，描述符发现，特征读写，写入，指示和通知。<br>属性协议层（ATT）：简单来说，ATT层用来定义用户命令及命令操作的数据，比如读取某个数据或者写某个数据。BLE协议栈中，开发者接触最多的就是ATT。BLE引入了attribute概念，用来描述一条一条的数据。Attribute除了定义数据，同时定义该数据可以使用的ATT命令，因此这一层被称为ATT层。<br>安全管理层(SM):当两个设备要在连接期间进行通信加密时，安全管理器使用配对流程。此流程允许通过交换身份信息来验证两个设备，交换信息是为了创建可作为受信任关系或（单个）安全连接基础的安全密钥。有一些方法用于执行配对过程。<br>逻辑链路控制及自适应协议层(L2CAP):支持更高层协议复用、数据包分割和重组操作以及服务信息质量的通知。<br>主机控制器接口（HCI）：主机和控制器之间提供了一种通信方式。本文使用的SPI接口实现HOST与Control的连接。<br>链路层（LL）：LL层是整个BLE协议栈的核心，也是BLE协议栈的难点和重点。LL层要做的事情非常多，比如具体选择哪程度 个射频通道进行通信，怎么识别空中数据包，具体在哪个时间点把数据包发送出去，怎么保证数据的完整性，ACK如何接收，如何进行重传，以及如何对链路进行管理和控制等等。LL层只负责把数据发出去或者收回来，对数据进行怎样的解析则交给上面的GAP或者ATT。<br>物理层（PHY）：PHY层用来指定BLE所用的无线频段，调制解调方式和方法等。</p>
+<h5 id="添加服务与特性"><a href="#添加服务与特性" class="headerlink" title="添加服务与特性"></a>添加服务与特性</h5><ol>
+<li>打开keilMDK，找到gatt_db.c文件，添加服务与特性的UUID，定义服务与特性句柄<pre><code>#define COPY_USART1_SERVICE_UUID(uuid_struct)          COPY_UUID_128(uuid_struct,0x00,0x00,0x00,0x00,0x00,0x03,0x11,0xe1,0x9a,0xb4,0x00,0x02,0xa5,0xd5,0xc5,0x1b)
+#define COPY_SEND_AND_RECEIVE_CHAR_UUID(uuid_struct)   COPY_UUID_128(uuid_struct,0x01,0x00,0x00,0x00,0x00,0x01,0x11,0xe1,0x9a,0xb4,0x00,0x02,0xa5,0xd5,0xc5,0x1b)
+uint16_t UTServW2STHandle, SendandreceiveCharHadle;</code></pre></li>
+<li>要实现添加服务，首先得知道这几个函数：<br>aci_gatt_add_serv功能是将服务添加到GATT服务器中，入口参数如下： </li>
+</ol>
+<pre><code>tBleStatus aci_gatt_add_serv(uint8_t service_uuid_type,   //服务类型UUID（16位或128位）
+                 const uint8_t* service_uuid,             //基于UUID类型字段的16位或128位UUID
+                 uint8_t service_type,                    //主要或辅助服务
+                 uint8_t max_attr_records,                //添加到此服务的最大属性记录数（包括服务声明本身）
+                 uint16_t *serviceHandle);                //务的句柄。将此服务添加到服务后，服务器将句柄分配给该服务。服务器也将此服务的句柄范围从serviceHandle分配给&lt;serviceHandle + max_attr_records&gt;。
+</code></pre><p>aci_gatt_add_char功能是为服务添加特征。入口参数如下：</p>
+<pre><code>tBleStatus aci_gatt_add_char(uint16_t serviceHandle, //向其添加特征的服务的句柄。
+                 uint8_t charUuidType,               //特征UUID的类型（16位或128位）。
+                 const uint8_t* charUuid,            //16位或128位UUID
+                 uint8_t charValueLen,              //特征值的最大长度
+                 uint8_t charProperties,            //特征属性,
+                 uint8_t secPermissions,            //添加的特征的安全权限
+                 uint8_t gattEvtMask,               //位掩码，用于启用将由GATT服务器发送到应用程序的事件
+                 uint8_t encryKeySize,              //此属性的最小加密密钥大小要求。有效范围：7到16。
+                 uint8_t isVariable,                //如果属性具有可变长度值字段（1）或没有（0）。
+                 uint16_t* charHandle);             //已添加特征的句柄。它是特征声明的句柄。</code></pre><p>在gatt_db.c文件中，添加自己所写的服务与特性，在初始化过程中添加此函数，实现服务与特性的添加。代码如下：</p>
+<pre><code>
+tBleStatus Add_USARTServW2ST_Service(void)
+{
+  tBleStatus ret;
+  int32_t NumberOfRecords=1;
+  uint8_t uuid[16];
+
+  COPY_USART1_SERVICE_UUID(uuid);
+  BLUENRG_memcpy(&amp;service_uuid.Service_UUID_128, uuid, 16);
+  ret = aci_gatt_add_serv(UUID_TYPE_128, service_uuid.Service_UUID_128, PRIMARY_SERVICE,
+                          1+3*NumberOfRecords, &amp;UTServW2STHandle);
+
+  if (ret != BLE_STATUS_SUCCESS) {
+    goto fail;
+  }
+
+  COPY_SEND_AND_RECEIVE_CHAR_UUID(uuid);
+  BLUENRG_memcpy(&amp;char_uuid.Char_UUID_128, uuid, 16);
+  ret =  aci_gatt_add_char(UTServW2STHandle, UUID_TYPE_128, char_uuid.Char_UUID_128,
+                           2+4+2,
+                           CHAR_PROP_NOTIFY|CHAR_PROP_READ|CHAR_PROP_WRITE,
+                           ATTR_PERMISSION_NONE,
+                           GATT_NOTIFY_READ_REQ_AND_WAIT_FOR_APPL_RESP|GATT_NOTIFY_WRITE_REQ_AND_WAIT_FOR_APPL_RESP|GATT_NOTIFY_ATTRIBUTE_WRITE,
+                           16, 1, &amp;SendandreceiveCharHadle);
+
+  if (ret != BLE_STATUS_SUCCESS) {
+    goto fail;
+  }
+
+  return BLE_STATUS_SUCCESS;
+
+fail:
+  return BLE_STATUS_ERROR;
+}</code></pre><ol start="3">
+<li><p>在sensor.c文件中添加属性事件。user_notify函数功能作用是回调处理ACI事件。在 case EVT_VENDOR:语句中，是对属性进行判断。EVT_BLUE_GATT_READ_PERMIT_REQ是GATT读允许请求，EVT_BLUE_GATT_WRITE_PERMIT_REQ为GATT写允许请求，EVT_BLUE_GATT_ATTRIBUTE_MODIFIED为GATT通知。当客户端对服务器进行读，写，通知时，程序将进入此函数进行相关操作。</p>
+<pre><code>case EVT_VENDOR:
+ {
+   evt_blue_aci *blue_evt = (void*)event_pckt-&gt;data;
+   switch(blue_evt-&gt;ecode){
+   case EVT_BLUE_GATT_ATTRIBUTE_MODIFIED:
+    {
+      evt_gatt_attr_modified_IDB05A1 *nt = (void*)blue_evt-&gt;data; 
+      //uint8_t a = HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_3);
+      //aci_gatt_update_char_value_ext_IDB05A1(nt-&gt;conn_handle,nt-&gt;attr_handle,0x01,4,6,2,&amp;a);
+    }
+    break;
+   case EVT_BLUE_GATT_READ_PERMIT_REQ:
+     {
+       evt_gatt_read_permit_req *pr = (void*)blue_evt-&gt;data;
+       Read_Request_CB(pr-&gt;attr_handle);
+     }
+     break;
+   case EVT_BLUE_GATT_WRITE_PERMIT_REQ:
+     {
+        evt_gatt_write_permit_req *pw = (void*)blue_evt-&gt;data;
+        Write_Request_CB(pw);
+     }  
+     break;
+   }
+
+ }
+ break;
+}</code></pre></li>
+<li><p>对相应的属性做出响应。<br>在EVT_BLUE_GATT_READ_PERMIT_REQ中，进入Read_Request_CB函数，添加的读属性进行操作，本文将0x1234发送给客户端。</p>
+</li>
+</ol>
+<pre><code>else if(handle == SendandreceiveCharHadle + 1)
+  {
+
+     BlueMS_Sendandreceive_Update(0x12345678, 0x1234);
+  }</code></pre><p>BlueMS_Sendandreceive_Update函数功能为将服务器中的数据发送给客户端，代码如下：</p>
+<pre><code>  //更新数据
+tBleStatus BlueMS_Sendandreceive_Update(int32_t press, int16_t temp)
+{
+  tBleStatus ret;
+  uint8_t buff[2];
+  HOST_TO_LE_16(buff, HAL_GetTick()&gt;&gt;3);
+
+  //HOST_TO_LE_32(buff+2,press);
+  HOST_TO_LE_16(buff,temp);
+
+  ret = aci_gatt_update_char_value(UTServW2STHandle, SendandreceiveCharHadle,
+                                   0, 2, buff);
+
+  if (ret != BLE_STATUS_SUCCESS){
+    PRINTF(&quot;Error while updating TEMP characteristic: 0x%04X\n&quot;,ret) ;
+    return BLE_STATUS_ERROR ;
+  }
+
+  return BLE_STATUS_SUCCESS;
+}</code></pre><p>在EVT_BLUE_GATT_WRITE_PERMIT_REQ中，添加Write_Request_CB函数，客户端写数据时，程序将进入这里，服务器进行读取进行相关操作，本函数只是从客户端写入的数据放入dubf数组中，没有进行相关操作，代码如下：</p>
+<pre><code> void Write_Request_CB(evt_gatt_write_permit_req *pw)
+{
+  tBleStatus ret;
+  uint8_t dubf[4];
+   if(connection_handle !=0)
+  {
+    ret = aci_gatt_write_response(pw-&gt;conn_handle,pw-&gt;attr_handle,0,0,pw-&gt;data_length,pw-&gt;data);
+    if (ret != BLE_STATUS_SUCCESS)
+    {
+      PRINTF(&quot;aci_gatt_allow_read() failed: 0x%02x\r\n&quot;, ret);
+    }
+  }
+  if(pw-&gt;attr_handle == AccGyroMagCharHandle + 1)
+  {
+
+  }
+  else if (pw-&gt;attr_handle == EnvironmentalCharHandle + 1)
+  {
+
+  }
+  else if(pw-&gt;attr_handle == SendandreceiveCharHadle + 1)
+  {
+     dubf[0] = pw-&gt;data[0];
+     dubf[1] = pw-&gt;data[1];
+     dubf[2] = pw-&gt;data[2];
+     dubf[3] = pw-&gt;data[3];
+  }
+}</code></pre><p>在通知属性中，当将新值写入启用通知的特性时，服务器将启动此操作。如果客户端已订阅有关该特征的通知，则在写入新值时会将新值推送到客户端。本文是将LED的状态通知给客户端。在app_bluenrg_ms.c下，在User_Process中，connected判断语句下添加以下两行代码：</p>
+<pre><code>uint8_t a = HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_3);
+BlueMS_LED_Update(a);</code></pre><p>BlueMS_LED_Update函数作是更新客户端的值,代码如下：</p>
+<pre><code>tBleStatus BlueMS_LED_Update(int8_t led)
+{
+  tBleStatus ret;
+  uint8_t buff[2];
+  HOST_TO_LE_16(buff, HAL_GetTick()&gt;&gt;3);
+  HOST_TO_LE_16(buff,led);
+
+  ret = aci_gatt_update_char_value(UTServW2STHandle, SendandreceiveCharHadle,
+                                   0, 2, buff);
+
+  if (ret != BLE_STATUS_SUCCESS){
+    PRINTF(&quot;Error while updating LED characteristic: 0x%04X\n&quot;,ret) ;
+    return BLE_STATUS_ERROR ;
+  }
+
+  return BLE_STATUS_SUCCESS; 
+}</code></pre><p>至此，这个程序就实现了添加服务与特性，以及读写通知属性。</p>
+<h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><p>本文使用BLE Scanner作为客户端。当BLE Scanner和Cannon小钢炮相连时，读取数据，写入数据，以及通知。<br>如图1-1所示，为wireshark抓到的包，客户端读取的数据，也就是服务器发送的数据。<br><img src="/posts/swble/20201220172711.png" alt="图1-1读数据包"><br>如图1-2所示，为wireshark抓到的写入数据包。<br><img src="/posts/swble/20201220172834.png" alt="图1-2读数据包"><br>如图1-3所示，为wireshark抓到的通知包。<br><img src="/posts/swble/20201220172857.png" alt="图1-3读数据包"></p>
 
             </div>
             <hr/>
@@ -514,7 +678,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://pan_su_wan.gitee.io/posts/906927798/">https://pan_su_wan.gitee.io/posts/906927798/</a>
+                    <a href="https://pan_su_wan.gitee.io/posts/swble/">https://pan_su_wan.gitee.io/posts/swble/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -552,8 +716,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6/">
-                                    <span class="chip bg-color">智能小车</span>
+                                <a href="/tags/STM32/">
+                                    <span class="chip bg-color">STM32</span>
                                 </a>
                             
                         </div>
@@ -724,7 +888,7 @@
         repo: '123psw.github.io',
         owner: '123psw',
         admin: "123psw",
-        id: '2020-05-31T12-52-47',
+        id: '2020-12-18T14-33-11',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -748,9 +912,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/posts/swble/">
                     <div class="card-image">
@@ -772,9 +937,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-18
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-18
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -787,6 +952,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -805,24 +971,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/2339799628/">
+                <a href="/posts/906927798/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="红外传感器距离与电压对数函数的由来">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="关于智能小车电机的选取">
                         
-                        <span class="card-title">红外传感器距离与电压对数函数的由来</span>
+                        <span class="card-title">关于智能小车电机的选取</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            材料
-stm32F401RET6小刚炮
-OSE-1L7，2SC3325资料
-OSE-1L7数据手册
-2SC3325数据手册
-TSL262R数据手册红外线发射接收端电路如图1-1所示，为红外线发射接收端电路。VB为stm32F401RET6的
+                            挑选智能小车的电机功以及功率的理解功是物理学中表示力对位移的累积的物理量。功率是指物体在单位时间内所做的功的多少，即功率是描述做功快慢的物理量。  
+直流伺服马达挑选直流伺服马达有以下条件
+
+计算所需的最大功率
+利用功率需求挑选合适的马达
+
                         
                     </div>
                     <div class="publish-info">
