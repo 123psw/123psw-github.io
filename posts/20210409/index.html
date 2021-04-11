@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="基于NUCLEO-WB55开发板对代码进行解析以及实现, 平湖烟雨">
+    <meta name="keywords" content="十一届蓝桥杯物联网决赛程序题, 平湖烟雨">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -15,7 +15,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>基于NUCLEO-WB55开发板对代码进行解析以及实现 | 平湖烟雨</title>
+    <title>十一届蓝桥杯物联网决赛程序题 | 平湖烟雨</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -305,12 +305,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">基于NUCLEO-WB55开发板对代码进行解析以及实现</h1>
+                    <h1 class="description center-align post-title">十一届蓝桥杯物联网决赛程序题</h1>
                 </div>
             </div>
         </div>
@@ -460,7 +460,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-27
+                    2021-04-09
                 </div>
                 
 
@@ -469,7 +469,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    1.4k
                 </div>
                 
 
@@ -482,124 +482,333 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>本文利用STM32CubeMx初始化配置STM32WB55,使用自己生成的顾客服务与特性实现蓝牙之间的读写通知，通过写控制LED2亮灭，读取LED1的状态，通知LED3（300ms闪烁）来实现本实验的目的。</p>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><ol>
-<li>STM32CubeMx V6.1.0 , KeilMDK V5.33.0.0 ,ST BLE Sensor v4.6.1 (安卓版本) ， WireShark V3.4.0</li>
-<li>NUCLE-WB55.Nucleo开发板</li>
-<li>STM32WB55参考手册 ,  NUCLE-WB55.Nucleo开发板原理图</li>
-</ol>
-<ul>
-<li>注意 : 要实现程序的下载 PC端需要安装<a href="https://www.st.com/en/development-tools/st-link-server.html" target="_blank" rel="noopener">STMicroelectronics stlink-server</a>这个驱动</li>
-</ul>
-<h2 id="硬件架构实现"><a href="#硬件架构实现" class="headerlink" title="硬件架构实现"></a>硬件架构实现</h2><ol>
-<li>STM32WB55主要特性：2颗独立内核，CPU1主要是用户需求，通俗的讲，接收到的数据该如何去用。比如当客户端（ST BLE Sensor）写数据，服务器（NUCLE-WB55.Nucleo）将数据接收到，我们将接收到的数据进行利用。本文利用客户端写入0x01和0x00实现开发板上的LED2亮灭；CPU2的功能就是一个蓝牙芯片，例如Cannon的Bluenrg。</li>
-<li>处理器间的通信：处理器间的通信是通过处理器间通信控制器 (IPCC)来实现的。<br>IPCC主要特性：</li>
-</ol>
-<ul>
-<li>12 个通道传输状态信号</li>
-<li>每个处理器有两条中断线</li>
-<li>按通道屏蔽中断</li>
-<li>两种通道工作模式<br>通过STM32WB55参考手册可知,CPU1和CPU2之间通过IPCC的RX和TX中断实现的。因此在编写代码过程中需使用到这两个中断。</li>
-</ul>
-<h2 id="软件架构的实现"><a href="#软件架构的实现" class="headerlink" title="软件架构的实现"></a>软件架构的实现</h2><p>本文通过STM32CubeMx生成,利用HAL库实现。</p>
+                <h2 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h2><h3 id="比赛题目"><a href="#比赛题目" class="headerlink" title="比赛题目"></a>比赛题目</h3><p>原题参考蓝桥杯大赛—<a href="https://www.lanqiao.cn/courses/2786/learning/?id=100644" target="_blank" rel="noopener">十一届蓝桥杯物联网</a></p>
+<h3 id="硬件分析"><a href="#硬件分析" class="headerlink" title="硬件分析"></a>硬件分析</h3><p>蓝桥杯物联网基于STM32L071KBU微控制器和LoRa收发器。LoRa终端集成了CMSIS DPA Link 编程调试工具，与目标微控制器STM32L071KBU连接。调试器内部实现了USB转串口功能，与目标控制器的USART2连接。使用虚拟串口时，需要短接P5的1，2脚和3，4脚。蓝桥杯物联网的套装产品，其外设有以下几个：</p>
 <ol>
-<li><p>打开KeilMOK,在maim.c文件下可以看到一些初始化：</p>
-<pre><code>HAL_Init(); //重置所有外围设备，初始化Flash接口和Systick。
-SystemClock_Config(); //配置系统时钟
-MX_GPIO_Init();   //初始化IO口
-MX_RF_Init();     //初始化RF,由于RF由于CPU2来控制的，因此在这里不配置，因此此函数为空
-MX_RTC_Init();    //初始化RTC
-MX_TIM2_Init();   //初始化定时器
-APPE_Init();      //STM32_WPAN的初始化代码</code></pre><p>本文主要是实现蓝牙通信，因此APPE_Init这个函数就是用来对蓝牙进行相关的操作。进入APPE_Init可以看到;</p>
-<pre><code>SystemPower_Config(); //配置系统电源模式
-HW_TS_Init(hw_ts_InitMode_Full, &amp;hrtc); //初始化TimerServer 
-BSP_LED_On(LED1); //顾客函数，相当于只要进入此函数，LED1点亮。
-appe_Tl_Init();    //初始化所有传输层
-return;</code></pre><p>前面三个函数不必过于纠结，在本文本中还用不到理解，主要是appe_Tl_Init这个函数:    </p>
-<pre><code>TL_MM_Config_t tl_mm_config;
-SHCI_TL_HciInitConf_t SHci_Tl_Init_Conf;
-/**&lt; Reference table initialization */
-TL_Init();
-/**&lt; System channel initialization */
-UTIL_SEQ_RegTask( 1&lt;&lt; CFG_TASK_SYSTEM_HCI_ASYNCH_EVT_ID, UTIL_SEQ_RFU, shci_user_evt_proc );
-SHci_Tl_Init_Conf.p_cmdbuffer = (uint8_t*)&amp;SystemCmdBuffer;
-SHci_Tl_Init_Conf.StatusNotCallBack = APPE_SysStatusNot;
-shci_init(APPE_SysUserEvtRx, (void*) &amp;SHci_Tl_Init_Conf);
-/**&lt; Memory Manager channel initialization */
-tl_mm_config.p_BleSpareEvtBuffer = BleSpareEvtBuffer;
-tl_mm_config.p_SystemSpareEvtBuffer = SystemSpareEvtBuffer;
-tl_mm_config.p_AsynchEvtPool = EvtPool;
-tl_mm_config.AsynchEvtPoolSize = POOL_SIZE;
-TL_MM_Init( &amp;tl_mm_config );
-TL_Enable();
-return;</code></pre><p>这里不过多解释，后面还会讲到这里，这里主要是APPE_SysUserEvtRx这个函数:     </p>
-<pre><code>static void APPE_SysUserEvtRx( void * pPayload )
-{
-UNUSED(pPayload);
-APPD_EnableCPU2( );  //使能CPU2
-APP_BLE_Init( );   //初始化BLE各层
-UTIL_LPM_SetOffMode(1U &lt;&lt; CFG_LPM_APP, UTIL_LPM_ENABLE);
-return;
-}</code></pre><p>这个函数的作用就是实现CPU2使能，以及BLE各层初始化，这边也不过多解释，后面将会介绍。这样主函数初始化就结束了，程序从现在开始，就会等待就绪事件（VS_HCI_C2_Ready）。</p>
-</li>
-<li><p>while(1)循环函数。<br>在while(1)循环函数可以看到只用了一个函数 UTIL_SEQ_Run，看到这里估计会有些蒙。其实这里用到了调度器。<br>这个时候就开始用到之前没有讲到的地方了。UTIL_SEQ_RegTask和 UTIL_SEQ_SetTask。<br>UTIL_SEQ_RegTask这个函数类似于登记，UTIL_SEQ_SetTask类似于操作系统的信号量。<br>比如上文中看到UTIL_SEQ_RegTask( 1&lt;&lt; CFG_TASK_SYSTEM_HCI_ASYNCH_EVT_ID, UTIL_SEQ_RFU, shci_user_evt_proc );以及在app_entry.c文件末尾出可以找到shci_notify_asynch_evt这个函数，它包含了<br>UTIL_SEQ_SetEvt( 1&lt;&lt; CFG_IDLEEVT_SYSTEM_HCI_CMD_EVT_RSP_ID );这个函数。从这里可以看出这两个函数：</p>
-<pre><code>UTIL_SEQ_SetEvt( 1&lt;&lt; CFG_IDLEEVT_SYSTEM_HCI_CMD_EVT_RSP_ID );
-UTIL_SEQ_RegTask( 1&lt;&lt; CFG_TASK_SYSTEM_HCI_ASYNCH_EVT_ID, UTIL_SEQ_RFU, shci_user_evt_proc );</code></pre><p>通俗的来讲，当程序进入到UTIL_SEQ_SetEvt( 1&lt;&lt; CFG_IDLEEVT_SYSTEM_HCI_CMD_EVT_RSP_ID );这个函数里，<br>UTIL_SEQ_Run这个函数就会找到UTIL_SEQ_RegTask( 1&lt;&lt; CFG_TASK_SYSTEM_HCI_ASYNCH_EVT_ID, UTIL_SEQ_RFU, shci_user_evt_proc );这个函数下的shci_user_evt_proc函数，最终程序执行shci_user_evt_proc函数里的东西。   </p>
-</li>
-<li><p>蓝牙连接所使用的函数<br>在custom_stm.c文件下，Custom_STM_Event_Handler函数就是对事件的处理,以下case语句就是Custom_STM_Event_Handler的部分代码，通过接收到的读写通知事件执行相关程序。</p>
-<pre><code>case EVT_BLUE_GATT_ATTRIBUTE_MODIFIED:
-       /* USER CODE BEGIN EVT_BLUE_GATT_ATTRIBUTE_MODIFIED */
-         attribute_modified = (aci_gatt_attribute_modified_event_rp0*)blue_evt-&gt;data; 
-        if(attribute_modified-&gt;Attr_Handle == (CustomContext.CustomShortledserviceHdle + 4))
-       {
-         return_value = SVCCTL_EvtAckFlowEnable;
-         if(attribute_modified-&gt;Attr_Data[0] &amp; COMSVC_Notification)
-         {
-           Notification.Custom_Evt_Opcode = CUSTOM_STM_SHORTREADANDWRITEORNOTICECHAR_NOTIFY_ENABLED_EVT;
-           Custom_STM_App_Notification(&amp;Notification);
-         }
-         else
-         {
-           Notification.Custom_Evt_Opcode =CUSTOM_STM_SHORTREADANDWRITEORNOTICECHAR_NOTIFY_DISABLED_EVT;
-           Custom_STM_App_Notification(&amp;Notification);
-         }
-       }
-       /* USER CODE END EVT_BLUE_GATT_ATTRIBUTE_MODIFIED */
-       break;
-     case EVT_BLUE_GATT_READ_PERMIT_REQ :
-       /* USER CODE BEGIN EVT_BLUE_GATT_READ_PERMIT_REQ */
-        read_perm_req = (aci_gatt_read_permit_req_event_rp0 *)blue_evt-&gt;data;
-         if(read_perm_req-&gt;Attribute_Handle == (CustomContext.CustomShortledserviceHdle + 2))
-         {
-           return_value = SVCCTL_EvtAckFlowEnable;
-           Notification.Custom_Evt_Opcode = CUSTOM_STM_SHORTREADANDWRITEORNOTICECHAR_READ_EVT;
-           Custom_STM_App_Notification(&amp;Notification);  
-           aci_gatt_allow_read(read_perm_req-&gt;Connection_Handle);
-         }
-       /* USER CODE END EVT_BLUE_GATT_READ_PERMIT_REQ */
-       break;
-     case EVT_BLUE_GATT_WRITE_PERMIT_REQ:
-       /* USER CODE BEGIN EVT_BLUE_GATT_WRITE_PERMIT_REQ */
-        write_perm_req = (aci_gatt_write_permit_req_event_rp0*)blue_evt-&gt;data;
-        if( write_perm_req-&gt;Attribute_Handle == (CustomContext.CustomShortledserviceHdle + 2))
-         {
-           return_value = SVCCTL_EvtAckFlowEnable;
-           Notification.Custom_Evt_Opcode = CUSTOM_STM_SHORTREADANDWRITEORNOTICECHAR_WRITE_NO_RESP_EVT;
-           Notification.DataTransfered.Length=write_perm_req-&gt;Data_Length;
-           Notification.DataTransfered.pPayload=write_perm_req-&gt;Data;
-           aci_gatt_write_resp(write_perm_req-&gt;Connection_Handle,write_perm_req-&gt;Attribute_Handle,0,0,write_perm_req-&gt;Data_Length,write_perm_req-&gt;Data);
-           Custom_STM_App_Notification(&amp;Notification);  
-         }
-       /* USER CODE END EVT_BLUE_GATT_WRITE_PERMIT_REQ */
-       break;</code></pre><p>在通知过程中，本文利用TIM2定时器。每隔100ms发送通知，因此在定时器的回调函数中添加UTIL_SEQ_SetTask标志，在 APP_BLE_Init函数中添加UTIL_SEQ_SetTask函数。这里就不过多介绍。</p>
-</li>
+<li>OLED显示屏</li>
 </ol>
-<h2 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h2><h3 id="STM32CubeMx配置"><a href="#STM32CubeMx配置" class="headerlink" title="STM32CubeMx配置"></a>STM32CubeMx配置</h3><iframe height="498" width="800" src="https://player.youku.com/embed/XNTAyNzcyMjYyOA==" frameborder="0" 'allowfullscreen'></iframe>
+<table>
+<thead>
+<tr>
+<th>引脚</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PA8</td>
+<td>I2C3_SCL</td>
+</tr>
+<tr>
+<td>PB4</td>
+<td>I2C3_SDA</td>
+</tr>
+<tr>
+<td>PB5</td>
+<td>电源控制引脚</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li>继电器</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>引脚</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PA0</td>
+<td>RELAY1</td>
+</tr>
+<tr>
+<td>PA1</td>
+<td>RELAY2</td>
+</tr>
+</tbody></table>
+<ol start="3">
+<li>LoRa模块</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>引脚</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PA10</td>
+<td>LoRa数据收，发中断输出</td>
+</tr>
+<tr>
+<td>PA9</td>
+<td>R复位，低电平有效</td>
+</tr>
+<tr>
+<td>PA4</td>
+<td>SPI片选信号</td>
+</tr>
+<tr>
+<td>PA5</td>
+<td>SPI时钟信号</td>
+</tr>
+<tr>
+<td>PA6</td>
+<td>SPI主器件输入从器件输出信号</td>
+</tr>
+<tr>
+<td>PA7</td>
+<td>SPI主器件输出从器件输入信号</td>
+</tr>
+</tbody></table>
+<ol start="4">
+<li>通用接口 ：矩阵键盘，模拟电压输出模块，温度传感器模块</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>引脚</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PB0</td>
+<td>GPIO/EXTI/ADC/TIM3_CH3</td>
+</tr>
+<tr>
+<td>PB1</td>
+<td>GPIO/EXTI/ADC/TIM3_CH4</td>
+</tr>
+<tr>
+<td>PB4</td>
+<td>GPIO/EXTI/TIM2_CH2/I2C3_SDA</td>
+</tr>
+<tr>
+<td>PB6</td>
+<td>GPIO/EXTI/I2C1_SCL/USART1_TX</td>
+</tr>
+<tr>
+<td>PB7</td>
+<td>GPIO/EXTI/I2C1_SDA/USART1_RX</td>
+</tr>
+<tr>
+<td>PB8</td>
+<td>GPIO/EXTI</td>
+</tr>
+</tbody></table>
+<h3 id="硬件配置"><a href="#硬件配置" class="headerlink" title="硬件配置"></a>硬件配置</h3><ol>
+<li>在LoRa终端A上配置温度传感器</li>
+<li>在LoRa终端B上配置键盘模块</li>
+</ol>
+<h3 id="软件配置"><a href="#软件配置" class="headerlink" title="软件配置"></a>软件配置</h3><h4 id="LoRa终端A"><a href="#LoRa终端A" class="headerlink" title="LoRa终端A"></a>LoRa终端A</h4><h5 id="STM32CubeMx-配置"><a href="#STM32CubeMx-配置" class="headerlink" title="STM32CubeMx 配置"></a>STM32CubeMx 配置</h5><ol>
+<li>Clock选择PLLCLK,HCLK为24MHz；</li>
+<li>Connectivity配置I2C1，I2C3，SPI1,USART2，引脚配置如上硬件分析；</li>
+<li>继电器PA0，PA1选择GPIO_Output;</li>
+<li>配置SPI的片选信号PA4为GPIO_Output,OLED电源控制引脚PB5配置为GPIO_Output；</li>
+<li>PC14配置为GPIO_Input,模式为上拉。</li>
+</ol>
+<h5 id="按键检测函数"><a href="#按键检测函数" class="headerlink" title="按键检测函数"></a>按键检测函数</h5><p>读取按键状态，将当前按键状态与上一次按键状态进行异或，如果为1，按键状态发生改变，再与上上一次按键状态，如果为1，表示按键松开，上一次按键状态为按下。</p>
+<pre><code>uint8_t UserKey(void)
+{
+  static uint8_t key_o = 0x00, key_n = 0x00;
+  uint8_t x = 0;
+  if(HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_14) == 0)
+   key_n = 0x01;
+  else 
+   key_n = 0x00;
+  x = (key_n ^ key_o) &amp; key_o;
+  key_o = key_n;
+  return x;
+}</code></pre><p>当串口接收到数据时产生中断，将接收的数据存入RxBuffer数组中。</p>
+<h5 id="串口中断函数"><a href="#串口中断函数" class="headerlink" title="串口中断函数"></a>串口中断函数</h5><pre><code>void USART2_IRQHandler(void)
+{
+  static uint16_t ch = 0;
+  if((__HAL_UART_GET_FLAG(&amp;huart2,UART_FLAG_RXNE)!=RESET))
+  {
+     ch=( uint16_t)READ_REG(huart2.Instance-&gt;RDR);//接收字符
+     RxBuffer[CountRx++] = ch;
+  }
+}</code></pre><h5 id="串口数据检测函数"><a href="#串口数据检测函数" class="headerlink" title="串口数据检测函数"></a>串口数据检测函数</h5><p>当串口接收五个字节后，进行指令判断。</p>
+<pre><code>void Check(uint8_t * cmd , uint8_t *dataMax , uint8_t *dataMin)
+{
+   if(cmd[0] == &#39;M&#39; &amp;&amp; cmd[1] == &#39;A&#39; &amp;&amp; cmd[2] == &#39;X&#39;)
+   {
+     HAL_UART_Transmit(&amp;huart2,(uint8_t *)&quot;ok&quot;,2,100);
+     *dataMax = ((cmd[3]-0x30)*10)+(cmd[4]-0x30);
+     sprintf(g_lcdLine_2st_line, &quot;Tmax:%.0F      &quot;,(float) *dataMax);
+   }
+   else if(cmd[0] == &#39;M&#39; &amp;&amp; cmd[1] == &#39;I&#39; &amp;&amp; cmd[2] == &#39;N&#39;)
+   {
+     HAL_UART_Transmit(&amp;huart2,(uint8_t *)&quot;ok&quot;,2,100);
+     *dataMin = ((cmd[3]-0x30)*10)+(cmd[4]-0x30);
+     sprintf(g_lcdLine_3st_line, &quot;Tmin:%.0F      &quot;,(float) *dataMin);
+   }
+   else
+    HAL_UART_Transmit(&amp;huart2,(uint8_t *)&quot;error&quot;,5,100);
+}</code></pre><h5 id="滴答定时器"><a href="#滴答定时器" class="headerlink" title="滴答定时器"></a>滴答定时器</h5><p>每隔20ms检测一次按键并判断OLED显示状态；每隔100msSensor_Flag置1，200msg_Radio_Recv_Flag置1。</p>
+<pre><code>  static uint16_t temp_num2 = 0;
+  static uint16_t temp_num3 = 0;
+  static uint16_t temp_num4 = 0;
+  temp_num2++;
+  temp_num3++;
+  temp_num4++;
+  if(temp_num2 &gt;= 20)
+  {
+   temp_num2 = 0;
+   if(UserKey())      //判断User是否按下
+   switch(key)        //判断OLED显示状态
+   {
+     case WenDu: key = Shangxian; break;
+     case Shangxian: key = WenDu; break;
+    }
+  }
+  if(temp_num3 &gt;= 100) 
+  {
+    temp_num3 = 0;
+    Sensor_Flag = 1; //温度读取以及更新标志
+  }
+  if(temp_num4 &gt;= 200)
+  {
+    temp_num4 = 0;
+    g_Radio_Recv_Flag = 1;  //LoRa接收终端B数据标志
+  }</code></pre><h5 id="继电器控制函数"><a href="#继电器控制函数" class="headerlink" title="继电器控制函数"></a>继电器控制函数</h5><p>根据温度是上下限，控制两个继电器不同状态。</p>
+<pre><code>void tempControl(char temp ,uint8_t dataMax , uint8_t dataMin)
+{
+   if(temp&gt;dataMax)
+   {
+      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_RESET); 
+   }
+   else if(temp&lt;dataMin)
+   {
+     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_SET);
+     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET); 
+   }
+   else 
+  {
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET); 
+  }
+}
+</code></pre><h5 id="main-c文件while-1-程序"><a href="#main-c文件while-1-程序" class="headerlink" title="main.c文件while(1)程序"></a>main.c文件while(1)程序</h5><p>Task_Recv函数是对终端B接收的数据并执行相关的数据发送。</p>
+<pre><code> if(CountRx&gt;=5)
+   {
+     CountRx = 0;
+     Check(RxBuffer,&amp;max,&amp;min);
+     RxBuffer[0] = RxBuffer[1] = RxBuffer[2] = RxBuffer[3] = RxBuffer[4] = 0;
+   }
+   tempControl(temper,max,min);
+   switch(key)
+   {
+    case Shangxian: 
+     OLED_ShowString(0, 0, (uint8_t *)g_lcdLine_2st_line, 16);
+     OLED_ShowString(0, 2, (uint8_t *)g_lcdLine_3st_line, 16);
+    break;
+    case WenDu: 
+     OLED_ShowString(0, 0, (unsigned char *)&quot;Temperature&quot;, 16);
+     OLED_ShowString(0, 2, (uint8_t *)g_lcdLine_1st_line, 16);
+    break; 
+     }
+   if(Sensor_Flag)
+   {
+     Sensor_Flag = 0;
+     temper = Get_Temperature();
+     sprintf(g_lcdLine_1st_line, &quot;   %.1FC  &quot;, temper);
+   }
+   if (g_Radio_Recv_Flag == 1)
+    {
+        g_Radio_Recv_Flag = 0;
+        Task_Recv(handle);
+    }
+  }</code></pre><h4 id="LoRa终端B"><a href="#LoRa终端B" class="headerlink" title="LoRa终端B"></a>LoRa终端B</h4><p>通过赛点提供的包对终端B的程旭进行修改。</p>
+<h5 id="按键任务"><a href="#按键任务" class="headerlink" title="按键任务"></a>按键任务</h5><p>判断哪个按键按下执行相关程序</p>
+<pre><code>#include &quot;key_task.h&quot;
 
-<h3 id="软件设计"><a href="#软件设计" class="headerlink" title="软件设计"></a>软件设计</h3><iframe height="498" width="800" src="https://player.youku.com/embed/XNTAyNzcyMzYyOA==" frameborder="0" 'allowfullscreen'></iframe>
-软件设计视频中少添加了 attribute_modified = (aci_gatt_attribute_modified_event_rp0*)blue_evt->data，因此无法通知，可以参考下面例程。  
+extern radio_handle_t  Radio_handle;
+extern char g_lcdLine_1st_line[16];
+extern char g_lcdLine_2st_line[16];
+extern uint8_t g_Key_Value;
 
-<h2 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h2><p>百度网盘<br>链接：<a href="https://pan.baidu.com/s/1r8_FHHor-gnewPku_j2hmQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1r8_FHHor-gnewPku_j2hmQ</a><br>提取码：9g0g </p>
+uint8_t Cmd_B1[5] = {0x0A, 0x0B, 0xB1, 0xEE, 0xEF};
+uint8_t Cmd_B2[5] = {0x0A, 0x0B, 0xB2, 0xEE, 0xEF};
+uint8_t Cmd_B3[5] = {0x0A, 0x0B, 0xB3, 0xEE, 0xEF};
+uint8_t Cmd_B4[5] = {0x0A, 0x0B, 0xB4, 0xEE, 0xEF};
+
+uint8_t Radio_State = 0;
+
+void TaskKey_init(void)
+{
+    Keyboard_Init();
+}
+
+void Task_Key(void)
+{
+    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_15, GPIO_PIN_SET);
+    switch (g_Key_Value)
+    {
+    case B1:
+      radio_buf_send(Radio_handle, Cmd_B1,5);   //发送读取温度cmd
+      radio_mode_set(Radio_handle, RX_MODE);//进入接收模式
+      HAL_GPIO_WritePin(GPIOC, GPIO_PIN_15, GPIO_PIN_RESET);
+      g_Key_Value = 0;
+    break;
+    case B2:
+      radio_buf_send(Radio_handle, Cmd_B2,5);  //发送读取温度上下限cmd
+      radio_mode_set(Radio_handle, RX_MODE);//进入接收模式
+      g_Key_Value = 0;
+    break;
+    case B4:
+      radio_buf_send(Radio_handle, Cmd_B3,5);  //发送读取继电器K1状态cmd
+      radio_mode_set(Radio_handle, RX_MODE);//进入接收模式
+      g_Key_Value = 0;
+    break;
+    case B5:
+      radio_buf_send(Radio_handle, Cmd_B4,5); //发送读取继电器K2状态cmd
+      radio_mode_set(Radio_handle, RX_MODE);//进入接收模式
+      g_Key_Value = 0;
+     break;
+    default :
+        ;
+        break;
+    }
+
+}</code></pre><h5 id="数据接收任务"><a href="#数据接收任务" class="headerlink" title="数据接收任务"></a>数据接收任务</h5><p>终端A发送数据时，终端B产生中断并在中断回调函数中接收数据并判断终端A发送的数据。Compare_Cmd函数是将数据存入oled显示缓存数据。</p>
+<pre><code>uint8_t Compare_Cmd(uint8_t *recv_cmd_buf, uint8_t recv_buf_num)
+{
+    uint8_t cmd_Num = 0;
+    float temper = 0;
+       switch (recv_cmd_buf[2])
+       {
+          case 0xA1 : 
+           temper = (float)(((float)(recv_cmd_buf[5]*10+recv_cmd_buf[6]))/(float)10);
+           sprintf(g_lcdLine_1st_line, &quot;Temperature &quot;);
+           sprintf(g_lcdLine_2st_line, &quot;   %.1FC    &quot;,(float)temper);
+          break;
+          case 0xA2 :  
+            sprintf(g_lcdLine_1st_line, &quot;Tmax:%.0f    &quot;,(float)recv_cmd_buf[5]);
+            sprintf(g_lcdLine_2st_line, &quot;Tmin:%.0f  &quot;,(float)recv_cmd_buf[6]);
+          break;
+          case 0xA3 : 
+            sprintf(g_lcdLine_1st_line, &quot;K1:Status    &quot;);
+            sprintf(g_lcdLine_2st_line, &quot;    %.0f   &quot;,(float)recv_cmd_buf[5]);
+          break;
+          case 0xA4 : 
+            sprintf(g_lcdLine_1st_line, &quot;K2:Status     &quot;);
+            sprintf(g_lcdLine_2st_line, &quot;    %.0f    &quot;,(float)recv_cmd_buf[5]);
+          break;
+          default : cmd_Num = 0; break;
+    }
+
+    return cmd_Num;
+}</code></pre><h5 id="主函数"><a href="#主函数" class="headerlink" title="主函数"></a>主函数</h5><p>每隔一段时间对OLED进行更新。</p>
+<pre><code>Task_Key();
+
+    if (g_OLED_Flag == 1)
+    {
+        g_OLED_Flag = 0;
+        OLED_ShowString(0, 0, (uint8_t *)g_lcdLine_1st_line, 16);
+        OLED_ShowString(0, 2, (uint8_t *)g_lcdLine_2st_line, 16);
+    }</code></pre><h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><p><a href="https://github.com/123psw/pansuwan" target="_blank" rel="noopener">十一届蓝桥杯物联网完整代码</a></p>
 
             </div>
             <hr/>
@@ -625,7 +834,7 @@ UTIL_SEQ_RegTask( 1&lt;&lt; CFG_TASK_SYSTEM_HCI_ASYNCH_EVT_ID, UTIL_SEQ_RFU, shc
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://pan_su_wan.gitee.io/posts/wb55/">https://pan_su_wan.gitee.io/posts/wb55/</a>
+                    <a href="https://pan_su_wan.gitee.io/posts/20210409/">https://pan_su_wan.gitee.io/posts/20210409/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -835,7 +1044,7 @@ UTIL_SEQ_RegTask( 1&lt;&lt; CFG_TASK_SYSTEM_HCI_ASYNCH_EVT_ID, UTIL_SEQ_RFU, shc
         repo: '123psw.github.io',
         owner: '123psw',
         admin: "123psw",
-        id: '2020-12-27T13-41-33',
+        id: '2021-04-09T17-02-23',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -859,9 +1068,10 @@ UTIL_SEQ_RegTask( 1&lt;&lt; CFG_TASK_SYSTEM_HCI_ASYNCH_EVT_ID, UTIL_SEQ_RFU, shc
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/posts/20210409/">
                     <div class="card-image">
@@ -880,9 +1090,9 @@ UTIL_SEQ_RegTask( 1&lt;&lt; CFG_TASK_SYSTEM_HCI_ASYNCH_EVT_ID, UTIL_SEQ_RFU, shc
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -895,6 +1105,7 @@ UTIL_SEQ_RegTask( 1&lt;&lt; CFG_TASK_SYSTEM_HCI_ASYNCH_EVT_ID, UTIL_SEQ_RFU, shc
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -913,28 +1124,26 @@ UTIL_SEQ_RegTask( 1&lt;&lt; CFG_TASK_SYSTEM_HCI_ASYNCH_EVT_ID, UTIL_SEQ_RFU, shc
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/swble/">
+                <a href="/posts/wb55/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="基于Cannon小钢炮蓝牙通信添加服务与特性">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="基于NUCLEO-WB55开发板对代码进行解析以及实现">
                         
-                        <span class="card-title">基于Cannon小钢炮蓝牙通信添加服务与特性</span>
+                        <span class="card-title">基于NUCLEO-WB55开发板对代码进行解析以及实现</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            实验目的本文主要目的是添加服务与特性，在BLE Scanner中实现读，写，通知。
+                            实验目的本文利用STM32CubeMx初始化配置STM32WB55,使用自己生成的顾客服务与特性实现蓝牙之间的读写通知，通过写控制LED2亮灭，读取LED1的状态，通知LED3（300ms闪烁）来实现本实验的目的。
 实验环境
-软件: stm32cubemx ,keilMDK，BLE Scanner, WireShark
-硬件：Cannon小钢炮
-资料：BlueNRG-1
+STM32Cu
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-27
                             </span>
                         <span class="publish-author">
                             
